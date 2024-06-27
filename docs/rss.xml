@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy的博客</title><link>https://AnJoy0723.github.io</link><description>Hello World！</description><copyright>AnJoy的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://AnJoy0723.github.io</link></image><lastBuildDate>Thu, 27 Jun 2024 06:50:37 +0000</lastBuildDate><managingEditor>AnJoy的博客</managingEditor><ttl>60</ttl><webMaster>AnJoy的博客</webMaster><item><title>win10透明任务栏</title><link>https://AnJoy0723.github.io/post/win10-tou-ming-ren-wu-lan.html</link><description>1、设置-颜色-打开 透明效果；&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy的博客</title><link>https://AnJoy0723.github.io</link><description>Hello World！</description><copyright>AnJoy的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://AnJoy0723.github.io</link></image><lastBuildDate>Thu, 27 Jun 2024 06:53:02 +0000</lastBuildDate><managingEditor>AnJoy的博客</managingEditor><ttl>60</ttl><webMaster>AnJoy的博客</webMaster><item><title>一键导出当前python环境安装的安装包</title><link>https://AnJoy0723.github.io/post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html</link><description>安装pipreqs&#13;
+&#13;
+pip install pipreqs&#13;
+&#13;
+装好之后切换到项目根目录下，执行下面命令：&#13;
+&#13;
+pipreqs ./&#13;
+&#13;
+正常的话应该会在项目根目录下生成一个requirements.txt文件&#13;
+&#13;
+如果出现unicode问题，通过下面命令解决：&#13;
+&#13;
+pipreqs ./ --encoding=utf-8&#13;
+&#13;
+当项目里存在requirements .txt文件时，执行会命令会提示警告，这时需要在执行命令中增加'–force'参数。</description><guid isPermaLink="true">https://AnJoy0723.github.io/post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html</guid><pubDate>Thu, 27 Jun 2024 06:52:37 +0000</pubDate></item><item><title>win10透明任务栏</title><link>https://AnJoy0723.github.io/post/win10-tou-ming-ren-wu-lan.html</link><description>1、设置-颜色-打开 透明效果；&#13;
 2、打开注册表，找到路径：&#13;
 计算机\\HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced；&#13;
 3、右侧找到名称 TaskbarAcrylicOpacity，如果没有，就右键新建一个DWORD（32位）值D；&#13;
