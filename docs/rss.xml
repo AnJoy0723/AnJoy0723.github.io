@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy的博客</title><link>https://AnJoy0723.github.io</link><description>Hello World！</description><copyright>AnJoy的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://AnJoy0723.github.io</link></image><lastBuildDate>Thu, 27 Jun 2024 06:53:02 +0000</lastBuildDate><managingEditor>AnJoy的博客</managingEditor><ttl>60</ttl><webMaster>AnJoy的博客</webMaster><item><title>一键导出当前python环境安装的安装包</title><link>https://AnJoy0723.github.io/post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html</link><description>安装pipreqs&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy的博客</title><link>https://AnJoy0723.github.io</link><description>Hello World！</description><copyright>AnJoy的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://AnJoy0723.github.io</link></image><lastBuildDate>Sun, 17 Nov 2024 15:34:24 +0000</lastBuildDate><managingEditor>AnJoy的博客</managingEditor><ttl>60</ttl><webMaster>AnJoy的博客</webMaster><item><title>Moonlight 防火墙设置</title><link>https://AnJoy0723.github.io/post/Moonlight%20-fang-huo-qiang-she-zhi.html</link><description>如果使用Windows Defender防火墙，则可能还需添加两条命令&#13;
+（通常GFE会自动给Denfender添加规则，如果连不上，尝试关闭Denfender以确认是否是它的问题）&#13;
+以管理员身份打开命令提示符或PowerShell窗口&#13;
+运行以下2个命令：&#13;
+netsh advfirewall firewall add rule name='GameStream UDP' dir=in protocol=udp localport=5353,47998-48010 action=allow&#13;
+netsh advfirewall firewall add rule name='GameStream TCP' dir=in protocol=tcp localport=47984,47989,48010 action=allow&#13;
+&#13;
+&#13;
+如果你想删除这两个规则请分别输入以下命令&#13;
+&#13;
+netsh advfirewall firewall delete rule name='GameStream UDP'&#13;
+netsh advfirewall firewall delete rule name='GameStream TCP'。</description><guid isPermaLink="true">https://AnJoy0723.github.io/post/Moonlight%20-fang-huo-qiang-she-zhi.html</guid><pubDate>Sun, 17 Nov 2024 15:30:33 +0000</pubDate></item><item><title>一键导出当前python环境安装的安装包</title><link>https://AnJoy0723.github.io/post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html</link><description>安装pipreqs&#13;
 &#13;
 pip install pipreqs&#13;
 &#13;
