@@ -42,7 +42,7 @@ pipreqs ./ --encoding=utf-8
 
 当项目里存在requirements .txt文件时，执行会命令会提示警告，这时需要在执行命令中增加'–force'参数。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://AnJoy0723.github.io/post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html">
+<meta property="og:url" content="https://anjoy0723.github.io//post/yi-jian-dao-chu-dang-qian-python-huan-jing-an-zhuang-de-an-zhuang-bao.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/173988586?v=4">
 <title>一键导出当前python环境安装的安装包</title>
 
@@ -79,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="header">
 <h1 class="postTitle">一键导出当前python环境安装的安装包</h1>
 <div class="title-right">
-    <a href="https://AnJoy0723.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://anjoy0723.github.io/" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
@@ -117,13 +117,13 @@ pip freeze &gt;requirements.txt</p>
 <p>pip freeze 会附带上一些不需要的包，以及某些包依赖的包~</p>
 <p>使用<br>
 在新环境部署项目时在对应目录 pip install -r requirement.txt 即可</p></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://AnJoy0723.github.io">AnJoy的博客</a></div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://anjoy0723.github.io/">AnJoy</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -132,8 +132,8 @@ pip freeze &gt;requirements.txt</p>
 var now=new Date();
 document.getElementById("copyrightYear").innerHTML=now.getFullYear();
 
-if(""!=""){
-    var startSite=new Date("");
+if("07/23/2023"!=""){
+    var startSite=new Date("07/23/2023");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
