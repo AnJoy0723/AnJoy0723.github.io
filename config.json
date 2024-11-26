@@ -3,6 +3,7 @@
     "subTitle":"Attendre et espérer",
     "homeUrl":"https://anjoy0723.github.io/",
     "avatarUrl":"https://avatars.githubusercontent.com/u/173988586?v=4",
+    //全局计数器
     "allHead":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>",
     "script":"<script src='https://blog.meekdai.com/Gmeek/plugins/articletoc.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>",
     "bottomText":"转载请注明出处",
