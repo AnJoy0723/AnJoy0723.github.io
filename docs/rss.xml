@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Tue, 26 Nov 2024 23:21:15 +0000</lastBuildDate><managingEditor>AnJoy</managingEditor><ttl>60</ttl><webMaster>AnJoy</webMaster><item><title>百度飞浆AI Studio搭建 Pytorch框架</title><link>https://anjoy0723.github.io//post/bai-du-fei-jiang-AI%20Studio-da-jian-%20Pytorch-kuang-jia.html</link><description>https://blog.csdn.net/m0_63706703/article/details/138837331?spm=1001.2014.3001.5502。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/bai-du-fei-jiang-AI%20Studio-da-jian-%20Pytorch-kuang-jia.html</guid><pubDate>Tue, 26 Nov 2024 23:19:20 +0000</pubDate></item><item><title>Moonlight 防火墙设置</title><link>https://anjoy0723.github.io//post/Moonlight%20-fang-huo-qiang-she-zhi.html</link><description>如果使用Windows Defender防火墙，则可能还需添加两条命令&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Tue, 26 Nov 2024 23:40:29 +0000</lastBuildDate><managingEditor>AnJoy</managingEditor><ttl>60</ttl><webMaster>AnJoy</webMaster><item><title>实用网站</title><link>https://anjoy0723.github.io//post/shi-yong-wang-zhan.html</link><description>1.手柄测试&#13;
+https://www.gobing.cn/experiment/key&#13;
+&#13;
+2.ps在线版&#13;
+https://www.uupoop.com/#/&#13;
+&#13;
+3.AI导航网&#13;
+https://www.ainav.cn/&#13;
+&#13;
+4.ICO图标在线制作&#13;
+https://www.bitbug.net/&#13;
+&#13;
+5.开源云音乐格式转换&#13;
+https://openyyy.com/&#13;
+&#13;
+6.IP地址查询&#13;
+https://tool.lu/ip/。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/shi-yong-wang-zhan.html</guid><pubDate>Tue, 26 Nov 2024 23:39:49 +0000</pubDate></item><item><title>百度飞浆AI Studio搭建 Pytorch框架</title><link>https://anjoy0723.github.io//post/bai-du-fei-jiang-AI%20Studio-da-jian-%20Pytorch-kuang-jia.html</link><description>https://blog.csdn.net/m0_63706703/article/details/138837331?spm=1001.2014.3001.5502。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/bai-du-fei-jiang-AI%20Studio-da-jian-%20Pytorch-kuang-jia.html</guid><pubDate>Tue, 26 Nov 2024 23:19:20 +0000</pubDate></item><item><title>Moonlight 防火墙设置</title><link>https://anjoy0723.github.io//post/Moonlight%20-fang-huo-qiang-she-zhi.html</link><description>如果使用Windows Defender防火墙，则可能还需添加两条命令&#13;
 （通常GFE会自动给Denfender添加规则，如果连不上，尝试关闭Denfender以确认是否是它的问题）&#13;
 以管理员身份打开命令提示符或PowerShell窗口&#13;
 运行以下2个命令：&#13;
