@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy's Blog</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Wed, 27 Nov 2024 16:12:40 +0000</lastBuildDate><managingEditor>AnJoy's Blog</managingEditor><ttl>60</ttl><webMaster>AnJoy's Blog</webMaster><item><title>实用网站</title><link>https://anjoy0723.github.io//post/shi-yong-wang-zhan.html</link><description>1.手柄测试&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy's Blog</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Sun, 01 Dec 2024 07:41:21 +0000</lastBuildDate><managingEditor>AnJoy's Blog</managingEditor><ttl>60</ttl><webMaster>AnJoy's Blog</webMaster><item><title>Legendary-第三方插件管理epic游戏</title><link>https://anjoy0723.github.io//post/Legendary--di-san-fang-cha-jian-guan-li-epic-you-xi.html</link><description>legendary下载链接：https://github.com/derrod/legendary/releases&#13;
+&#13;
+命令：&#13;
+登录账号：legendary auth&#13;
+查看账号游戏列表：legendary list-games&#13;
+查看已安装游戏：legendary list-installed&#13;
+自动同步所有游戏：legendary -y egl-sync&#13;
+同步云存档：legendary sync-saves&#13;
+安装游戏：legendary install 'name' --game-folder 【path】&#13;
+启动游戏：legendary launch 'name'&#13;
+更新所有游戏：legendary list-installed --check-updates&#13;
+卸载游戏：legendary uninstall 'name'&#13;
+退出登录：legendary auth --delete。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/Legendary--di-san-fang-cha-jian-guan-li-epic-you-xi.html</guid><pubDate>Sun, 01 Dec 2024 07:41:00 +0000</pubDate></item><item><title>实用网站</title><link>https://anjoy0723.github.io//post/shi-yong-wang-zhan.html</link><description>1.手柄测试&#13;
 https://www.gobing.cn/experiment/key&#13;
 &#13;
 2.ps在线版&#13;
