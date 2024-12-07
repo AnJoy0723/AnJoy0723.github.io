@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy's Blog</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Thu, 05 Dec 2024 00:44:51 +0000</lastBuildDate><managingEditor>AnJoy's Blog</managingEditor><ttl>60</ttl><webMaster>AnJoy's Blog</webMaster><item><title>Aliya-彼方的她</title><link>https://anjoy0723.github.io//post/Aliya--bi-fang-de-ta.html</link><description>![2704110_screenshots_20240511152353_1](https://github.com/user-attachments/assets/e8497b4a-41f7-4c25-9477-ecfb9dbeeff9)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>AnJoy's Blog</title><link>https://anjoy0723.github.io/</link><description>Attendre et espérer</description><copyright>AnJoy's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/173988586?v=4</url><title>avatar</title><link>https://anjoy0723.github.io/</link></image><lastBuildDate>Sat, 07 Dec 2024 03:02:17 +0000</lastBuildDate><managingEditor>AnJoy's Blog</managingEditor><ttl>60</ttl><webMaster>AnJoy's Blog</webMaster><item><title>JSP“三大请求传参方式”及“中文乱码问题解决方案”</title><link>https://anjoy0723.github.io//post/JSP%E2%80%9C-san-da-qing-qiu-chuan-can-fang-shi-%E2%80%9D-ji-%E2%80%9C-zhong-wen-luan-ma-wen-ti-jie-jue-fang-an-%E2%80%9D.html</link><description># 一、访问请求参数的方法&#13;
+Java web中进行值传递的方法常用的有三种，分别是：&#13;
+&#13;
+使用JSP的forward或include动作，利用传参数子动作实现参数的传递，‘&#13;
+&#13;
+在JSP或HTML页面中，利用表单传递参数，&#13;
+&#13;
+利用追加在网址后的参数传递或追加在超链接后的参数传递&#13;
+需注意的是：在上述的三种传参方式中，方式1和方式3属于get类型的参数提交方式，而方式2属于get或post方式的参数提交方式，它可以通过form的method属性进行参数的选择，&#13;
+&#13;
+get请求与post请求的不同之处是前者参数会显示在地址栏。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/JSP%E2%80%9C-san-da-qing-qiu-chuan-can-fang-shi-%E2%80%9D-ji-%E2%80%9C-zhong-wen-luan-ma-wen-ti-jie-jue-fang-an-%E2%80%9D.html</guid><pubDate>Sat, 07 Dec 2024 03:01:54 +0000</pubDate></item><item><title>Aliya-彼方的她</title><link>https://anjoy0723.github.io//post/Aliya--bi-fang-de-ta.html</link><description>![2704110_screenshots_20240511152353_1](https://github.com/user-attachments/assets/e8497b4a-41f7-4c25-9477-ecfb9dbeeff9)&#13;
 。</description><guid isPermaLink="true">https://anjoy0723.github.io//post/Aliya--bi-fang-de-ta.html</guid><pubDate>Thu, 05 Dec 2024 00:44:22 +0000</pubDate></item><item><title>雪华</title><link>https://anjoy0723.github.io//post/xue-hua.html</link><description>![屏幕截图 2024-03-28 234427](https://github.com/user-attachments/assets/f614086a-27df-4b0d-87cd-eb0b26e57ba7)&#13;
 ![屏幕截图 2024-03-28 234443](https://github.com/user-attachments/assets/c662c893-24cb-4bf3-a157-cc810185957a)&#13;
 &#13;
