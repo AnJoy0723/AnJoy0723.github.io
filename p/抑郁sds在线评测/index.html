@@ -10,7 +10,7 @@
 <meta property='og:description' content=" 1 2 3 4 links: - title: 抑郁SDS在线评测 description: 一个纯前端的抑郁SDS在线评测网站 website: http://121.40.239.147/ ">
 <meta property='og:url' content='https://anjoy0723.github.io/p/%E6%8A%91%E9%83%81sds%E5%9C%A8%E7%BA%BF%E8%AF%84%E6%B5%8B/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='vue' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2025-03-02T22:36:29&#43;08:00'/><meta property='article:modified_time' content='2025-03-13T09:48:11&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='vue' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2025-03-02T22:36:29&#43;08:00'/><meta property='article:modified_time' content='2025-03-13T11:02:14&#43;00:00'/>
 <meta name="twitter:title" content="抑郁SDS在线评测">
 <meta name="twitter:description" content=" 1 2 3 4 links: - title: 抑郁SDS在线评测 description: 一个纯前端的抑郁SDS在线评测网站 website: http://121.40.239.147/ ">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -410,7 +410,7 @@
 
 
         <span>
-            最后更新于 Mar 13, 2025 09:48 UTC
+            最后更新于 Mar 13, 2025 11:02 UTC
         </span>
     </section></footer>
 
@@ -816,7 +816,7 @@
       live2dSdkPath: cdnPath + "/live2d-sdk.js"
     },
     
-    tools: ["hitokoto", "express", "switch-model","photo", "quit"],
+    tools: ["hitokoto", "express","photo", "quit"],
     
     drag: {
       enable: true,
@@ -903,17 +903,52 @@
 
 <div class="js-Pjax">
     <script>
-        
         (function() {
+            
+            const commentsContainer = document.getElementById('comments');
+            if (!commentsContainer) return;
+            
+            
+            const existingGiscus = document.querySelector('.giscus-frame');
+            
+            
+            const theme = document.documentElement.dataset.scheme === 'light' ? 
+                'light' : 
+                'dark_dimmed';
+            
+            
+            if (existingGiscus) {
+                existingGiscus.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme: theme } } },
+                    'https://giscus.app'
+                );
+                return;
+            }
+            
+            
             let script = document.createElement('script');
+            script.src = "https://giscus.app/client.js";
+            script.setAttribute('data-repo', 'AnJoy0723\/AnJoy0723.github.io');
+            script.setAttribute('data-repo-id', 'R_kgDOOA64jQ');
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', 'DIC_kwDOOA64jc4Cncjq');
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'top');
+            script.setAttribute('data-theme', theme);
+            script.setAttribute('data-lang', 'en');
+            script.setAttribute('data-loading', '');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
             
-             script.setAttribute('key', 'value');
-            ...
             
-            document.querySelector('color-text-primary gsc-main').appendchild(script)
-        })(document)
+            commentsContainer.appendChild(script);
+            
+        })(document);
     </script>
-<div>
+</div>
 
 
     </body>
