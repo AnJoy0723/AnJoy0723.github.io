@@ -10,7 +10,7 @@
 <meta property='og:description' content="Attendre et espérer">
 <meta property='og:url' content='https://anjoy0723.github.io/categories/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-03-13T11:02:14&#43;00:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-03-14T09:24:41&#43;00:00 '/>
 <meta name="twitter:title" content="Categories">
 <meta name="twitter:description" content="Attendre et espérer"><link rel="alternate" type="application/rss&#43;xml" href="https://anjoy0723.github.io/categories/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -734,13 +734,41 @@
   }
 </script>
 
+
+
+    
+    <script src=https://anjoy0723.github.io/js/topbar.min.js></script>
+
+<script>
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255,  255, 255, 1)', 
+            '1.0': 'rgba(0, 149, 234,  1)' 
+        }
+    })
+	
+    document.addEventListener('pjax:send', () => {
+        
+        topbar.show();
+    })
+	
+    document.addEventListener('pjax:complete', () => {
+        
+        topbar.hide();
+    })
+</script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
 <script>
     var pjax = new Pjax({
         selectors: [
             ".main-container",
-            ".js-Pjax"
-        ]
+            "title"，
+            ".color-text-primary gsc-main"  
+        ],
+        cacheBust: false  
     })
 </script>
 <script>
@@ -752,7 +780,10 @@
                 let newDom = new DOMParser().parseFromString(responseText, 'text/html');
                 
                 let bodyClass = newDom.body.className;
-                document.body.setAttribute("class", bodyClass)
+                document.body.setAttribute("class", bodyClass);
+                
+                
+                updateMetaTags(newDom);
             }
             
             pjax._handleResponse(responseText, request, href, options);
@@ -760,63 +791,22 @@
             
         }
     }
-</script>
-<script>
-    document.addEventListener('pjax:complete', () => {
+    
+    
+    function updateMetaTags(newDom) {
         
-        window.Stack.init();
-    })
-</script>
-
-<div class="js-Pjax">
-    <script>
-        (function() {
+        const metaSelectors = ['description', 'keywords', 'og:title', 'og:description', 'og:url', 'twitter:title', 'twitter:description'];
+        
+        metaSelectors.forEach(selector => {
+            const newMeta = newDom.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
+            const currentMeta = document.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
             
-            const commentsContainer = document.getElementById('comments');
-            if (!commentsContainer) return;
-            
-            
-            const existingGiscus = document.querySelector('.giscus-frame');
-            
-            
-            const theme = document.documentElement.dataset.scheme === 'light' ? 
-                'light' : 
-                'dark_dimmed';
-            
-            
-            if (existingGiscus) {
-                existingGiscus.contentWindow.postMessage(
-                    { giscus: { setConfig: { theme: theme } } },
-                    'https://giscus.app'
-                );
-                return;
+            if (newMeta && currentMeta) {
+                currentMeta.setAttribute('content', newMeta.getAttribute('content'));
             }
-            
-            
-            let script = document.createElement('script');
-            script.src = "https://giscus.app/client.js";
-            script.setAttribute('data-repo', 'AnJoy0723\/AnJoy0723.github.io');
-            script.setAttribute('data-repo-id', 'R_kgDOOA64jQ');
-            script.setAttribute('data-category', 'Announcements');
-            script.setAttribute('data-category-id', 'DIC_kwDOOA64jc4Cncjq');
-            script.setAttribute('data-mapping', 'pathname');
-            script.setAttribute('data-strict', '0');
-            script.setAttribute('data-reactions-enabled', '1');
-            script.setAttribute('data-emit-metadata', '0');
-            script.setAttribute('data-input-position', 'top');
-            script.setAttribute('data-theme', theme);
-            script.setAttribute('data-lang', 'en');
-            script.setAttribute('data-loading', '');
-            script.setAttribute('crossorigin', 'anonymous');
-            script.async = true;
-            
-            
-            commentsContainer.appendChild(script);
-            
-        })(document);
-    </script>
-</div>
-
+        });
+    }
+</script>
 
     </body>
 </html>
