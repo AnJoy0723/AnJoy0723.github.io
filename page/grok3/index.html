@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gro游乐场</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .account {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .account.selected {
+            background-color: #e6f7ff;
+            border-color: #1890ff;
+        }
+        .delete-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: #ff4d4f;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin: 10px 0;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .radio-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .radio-container input {
+            margin-right: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+        }
+        .grok-link {
+            width: auto;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px;
+            background: linear-gradient(135deg, #1890ff, #096dd9);
+            color: white;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .grok-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #40a9ff, #1890ff);
+        }
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #333;
+            padding: 2px 4px;
+            border-radius: 6px;
+            background-color: #f6f8fa;
+            border: 1px solid #d1d5da;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+        }
+
+        .github-link:hover {
+            background-color: #e1e4e8;
+        }
+
+        .github-link svg {
+            fill: #24292e;
+        }
+        .help-link {
+            font-size: 12px;
+            margin-left: 8px;
+            color: #1890ff;
+            text-decoration: none;
+        }
+        
+        .help-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .help-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .help-header h3 {
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .help-body {
+            padding: 5px;
+        }
+        
+        .help-body ol {
+            padding-left: 20px;
+        }
+        
+        .help-body li {
+            margin-bottom: 8px;
+        }
+        .image-container {
+            margin: 2px 0;
+            text-align: center;
+        }
+        
+        .help-image {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div style="display: flex; align-items: center; justify-content:flex-start; margin-bottom: 20px;">
+        <h1 style="margin: 0;">Grok游乐场</h1>
+        <a href="https://anjoy0723-grok.deno.dev/grok" id="grok-link" class="grok-link" target="_blank">
+            <strong>🚀 点击前往 Grok 聊天页面 🚀</strong>
+        </a>
+        <a href="https://github.com/tech-shrimp/grok-playground" class="github-link" target="_blank">
+            <svg height="24" width="24" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+        </a>
+    </div>
+    
+    <div id="accounts-container">
+        <!-- 账户将在这里动态生成 -->
+    </div>
+    
+    <button id="add-account">添加新账户</button>
+    
+    <h2>当前选中的账户</h2>
+    <div id="selected-account-info">未选择任何账户</div>
+
+    <div id="help-panel" class="help-panel" style="display: none;">
+        <div class="help-content">
+          <div class="help-header">
+            <h3>如何获取Grok Cookie</h3>
+            <button onclick="closeHelpPanel()" class="close-btn">×</button>
+          </div>
+          <div class="help-body">
+            <ol>
+              <li>开启魔法上网</li>
+              <li>注册账户，并且登录Grok官方网站 (https://grok.com)</li>
+              <li>打开浏览器的开发者工具（按F12）</li>
+              <li>切换到"网络"(Network)标签,刷新页面</li>
+              <li>在网络请求列表中找到一个API请求</li>
+              <li>在请求头(Headers)中找到"Cookie"字段</li>
+              <li>复制整个Cookie值并粘贴到文本框中</li>
+            </ol>
+          </div>
+          <div class="image-container">
+            <img src="./img/how_to_get_cookie.png" class="help-image">
+          </div>
+        </div>
+    </div>
+
+    <script>
+        // 存储账户的数组
+        let accounts = [];
+        // 当前选中的账户ID
+        let selectedAccountId = null;
+
+        // 设置Grok链接
+        function setGrokLink() {
+            const grokLink = document.getElementById('grok-link');
+            grokLink.href = window.location.origin + '/grok';
+        }
+        
+        // 从localStorage加载账户
+        function loadAccounts() {
+            const savedAccounts = localStorage.getItem('cookieAccounts');
+            if (savedAccounts) {
+                accounts = JSON.parse(savedAccounts);
+            }
+            
+            // 加载选中的账户
+            selectedAccountId = localStorage.getItem('selectedAccountId');
+            
+            renderAccounts();
+            updateSelectedAccountDiv();
+        }
+        
+        // 保存账户到localStorage
+        function saveAccounts() {
+            localStorage.setItem('cookieAccounts', JSON.stringify(accounts));
+        }
+        
+        // 渲染账户列表
+        function renderAccounts() {
+            const container = document.getElementById('accounts-container');
+            container.innerHTML = '';
+            
+            accounts.forEach((account, index) => {
+                const accountDiv = document.createElement('div');
+                accountDiv.className = 'account';
+                if (account.id === selectedAccountId) {
+                    accountDiv.classList.add('selected');
+                }
+                
+                const radioContainer = document.createElement('div');
+                radioContainer.className = 'radio-container';
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'account';
+                radio.id = `account-${account.id}`;
+                radio.checked = account.id === selectedAccountId;
+                radio.addEventListener('change', () => selectAccount(account.id));
+                
+                const label = document.createElement('label');
+                label.htmlFor = `account-${account.id}`;
+                label.textContent = `账户 ${index + 1}`;
+                label.innerHTML = `账户 ${index + 1} <a href="#" class="help-link" onclick="openHelpPanel(event)">如何获取cookie?</a>`;
+
+                
+                radioContainer.appendChild(radio);
+                radioContainer.appendChild(label);
+                
+                const textarea = document.createElement('textarea');
+                textarea.placeholder = '在此粘贴Cookie字符串...';
+                textarea.value = account.cookie || '';
+                textarea.id = `cookie-${account.id}`;
+                textarea.addEventListener('input', () => {
+                    account.cookie = textarea.value;
+                    saveAccounts();
+                    
+                    if (account.id === selectedAccountId) {
+                        // 将选中账户保存到grok_cookie中
+                        document.cookie = `grok_cookie=${encodeURIComponent(account.cookie)}; path=/; max-age=31536000`;
+                        updateSelectedAccountDiv();
+                    }
+                });
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = '删除';
+                deleteBtn.addEventListener('click', () => deleteAccount(account.id));
+                
+                accountDiv.appendChild(radioContainer);
+                accountDiv.appendChild(textarea);
+                accountDiv.appendChild(deleteBtn);
+                
+                container.appendChild(accountDiv);
+            });
+        }
+        
+        // 添加新账户
+        function addAccount() {
+            const newId = Date.now().toString();
+            accounts.push({
+                id: newId,
+                cookie: ''
+            });
+            renderAccounts();
+        }
+        
+        // 删除账户
+        function deleteAccount(id) {
+            if (confirm('确定要删除此账户吗？')) {
+                accounts = accounts.filter(account => account.id !== id);
+                
+                if (selectedAccountId === id) {
+                    selectedAccountId = null;
+                    localStorage.removeItem('selectedAccountId');
+                    updateSelectedAccountDiv();
+                }
+                
+                saveAccounts();
+                renderAccounts();
+            }
+        }
+        
+        // 选择账户
+        function selectAccount(id) {
+            selectedAccountId = id;
+            localStorage.setItem('selectedAccountId', id);
+            
+            // 找到选中账户的cookie并保存
+            const selectedAccount = accounts.find(account => account.id === id);
+            if (selectedAccount) {
+                // 将选中账户保存到grok_cookie中
+                document.cookie = `grok_cookie=${encodeURIComponent(selectedAccount.cookie)}; path=/; max-age=31536000`;
+            }
+            
+            renderAccounts();
+            updateSelectedAccountDiv();
+        }
+        
+        // 更新选中账户信息显示
+        function updateSelectedAccountDiv() {
+            const infoDiv = document.getElementById('selected-account-info');
+            
+            if (!selectedAccountId) {
+                infoDiv.textContent = '未选择任何账户';
+                return;
+            }
+            
+            const selectedAccount = accounts.find(account => account.id === selectedAccountId);
+            if (!selectedAccount) {
+                infoDiv.textContent = '所选账户不存在';
+                return;
+            }
+            
+            const accountIndex = accounts.findIndex(account => account.id === selectedAccountId);
+            
+            infoDiv.innerHTML = `
+                <p><strong>当前选中：</strong> 账户 ${accountIndex + 1}</p>
+                <p><strong>Cookie：</strong> ${selectedAccount.cookie ? selectedAccount.cookie.substring(0, 50) + '...' : '无'}</p>
+            `;
+        }
+
+        function openHelpPanel(event) {
+            event.preventDefault();
+            document.getElementById('help-panel').style.display = 'flex';
+        }
+        
+        function closeHelpPanel() {
+            document.getElementById('help-panel').style.display = 'none';
+        }
+        
+        // 初始化事件监听
+        document.getElementById('add-account').addEventListener('click', addAccount);
+        
+        // 页面加载时初始化
+        window.addEventListener('load', () => {
+            loadAccounts();
+            setGrokLink();
+
+            // 如果有账户但没有选中任何账户，则默认选中第一个
+            if (!selectedAccountId && accounts.length > 0) {
+                selectAccount(accounts[0].id);
+            }
+        });
+    </script>
+</body>
+</html>
