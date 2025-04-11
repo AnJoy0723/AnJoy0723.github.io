@@ -645,6 +645,57 @@
   });
 </script>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            "title",
+            ".color-text-primary gsc-main"  ,
+            "live2d"
+        ],
+        cacheBust: false  
+    })
+</script>
+<script>
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass);
+                
+                
+                updateMetaTags(newDom);
+            }
+            
+            pjax._handleResponse(responseText, request, href, options);
+        } else {
+            
+        }
+    }
+    
+    
+    function updateMetaTags(newDom) {
+        
+        const metaSelectors = ['description', 'keywords', 'og:title', 'og:description', 'og:url', 'twitter:title', 'twitter:description'];
+        
+        metaSelectors.forEach(selector => {
+            const newMeta = newDom.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
+            const currentMeta = document.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
+            
+            if (newMeta && currentMeta) {
+                currentMeta.setAttribute('content', newMeta.getAttribute('content'));
+            }
+        });
+    }
+</script>
+
 <style>
   #particles-js {
     position: fixed;
@@ -936,55 +987,6 @@
         
         topbar.hide();
     })
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script>
-    var pjax = new Pjax({
-        selectors: [
-            ".main-container",
-            "title"，
-            ".color-text-primary gsc-main"  
-        ],
-        cacheBust: false  
-    })
-</script>
-<script>
-    pjax._handleResponse = pjax.handleResponse;
-    pjax.handleResponse = function(responseText, request, href, options) {
-        if (request.responseText.match("<html")) {
-            if (responseText) {
-                
-                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
-                
-                let bodyClass = newDom.body.className;
-                document.body.setAttribute("class", bodyClass);
-                
-                
-                updateMetaTags(newDom);
-            }
-            
-            pjax._handleResponse(responseText, request, href, options);
-        } else {
-            
-        }
-    }
-    
-    
-    function updateMetaTags(newDom) {
-        
-        const metaSelectors = ['description', 'keywords', 'og:title', 'og:description', 'og:url', 'twitter:title', 'twitter:description'];
-        
-        metaSelectors.forEach(selector => {
-            const newMeta = newDom.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
-            const currentMeta = document.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
-            
-            if (newMeta && currentMeta) {
-                currentMeta.setAttribute('content', newMeta.getAttribute('content'));
-            }
-        });
-    }
 </script>
 
     </body>

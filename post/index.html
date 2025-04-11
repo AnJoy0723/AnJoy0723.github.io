@@ -10,7 +10,7 @@
 <meta property='og:description' content="Attendre et espérer">
 <meta property='og:url' content='https://anjoy0723.github.io/post/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-04-11T14:11:11&#43;00:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-04-11T14:24:33&#43;00:00 '/>
 <meta name="twitter:title" content="Posts">
 <meta name="twitter:description" content="Attendre et espérer"><link rel="alternate" type="application/rss&#43;xml" href="https://anjoy0723.github.io/post/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -503,6 +503,57 @@
   });
 </script>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container",
+            "title",
+            ".color-text-primary gsc-main"  ,
+            "live2d"
+        ],
+        cacheBust: false  
+    })
+</script>
+<script>
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass);
+                
+                
+                updateMetaTags(newDom);
+            }
+            
+            pjax._handleResponse(responseText, request, href, options);
+        } else {
+            
+        }
+    }
+    
+    
+    function updateMetaTags(newDom) {
+        
+        const metaSelectors = ['description', 'keywords', 'og:title', 'og:description', 'og:url', 'twitter:title', 'twitter:description'];
+        
+        metaSelectors.forEach(selector => {
+            const newMeta = newDom.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
+            const currentMeta = document.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
+            
+            if (newMeta && currentMeta) {
+                currentMeta.setAttribute('content', newMeta.getAttribute('content'));
+            }
+        });
+    }
+</script>
+
 <style>
   #particles-js {
     position: fixed;
@@ -794,55 +845,6 @@
         
         topbar.hide();
     })
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-<script>
-    var pjax = new Pjax({
-        selectors: [
-            ".main-container",
-            "title"，
-            ".color-text-primary gsc-main"  
-        ],
-        cacheBust: false  
-    })
-</script>
-<script>
-    pjax._handleResponse = pjax.handleResponse;
-    pjax.handleResponse = function(responseText, request, href, options) {
-        if (request.responseText.match("<html")) {
-            if (responseText) {
-                
-                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
-                
-                let bodyClass = newDom.body.className;
-                document.body.setAttribute("class", bodyClass);
-                
-                
-                updateMetaTags(newDom);
-            }
-            
-            pjax._handleResponse(responseText, request, href, options);
-        } else {
-            
-        }
-    }
-    
-    
-    function updateMetaTags(newDom) {
-        
-        const metaSelectors = ['description', 'keywords', 'og:title', 'og:description', 'og:url', 'twitter:title', 'twitter:description'];
-        
-        metaSelectors.forEach(selector => {
-            const newMeta = newDom.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
-            const currentMeta = document.querySelector(`meta[name="${selector}"], meta[property="${selector}"]`);
-            
-            if (newMeta && currentMeta) {
-                currentMeta.setAttribute('content', newMeta.getAttribute('content'));
-            }
-        });
-    }
 </script>
 
     </body>
