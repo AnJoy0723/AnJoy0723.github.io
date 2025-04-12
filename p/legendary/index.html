@@ -434,6 +434,7 @@
         }
     })();
 </script>
+    <div class="comment"></div>
 
     
 
@@ -565,7 +566,11 @@
     var pjax = new Pjax({
         selectors: [
             ".main-container",
-            "title"
+            "title",
+            ".color-text-primary gsc-main"，
+            ".sidebar",
+			".main-article",
+			".js-Pjax"
         ],
         cacheBust: false  
     })
@@ -605,7 +610,35 @@
             }
         });
     }
+</script><div class="js-Pjax">
+<script>
+    (function () {
+        
+        let comment = document.querySelector(".comment");
+        if (!comment) {
+            return
+        }
+        let script = document.createElement('script');
+        
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'AnJoy0723\/AnJoy0723.github.io');
+		script.setAttribute('data-repo-id', 'R_kgDOOA64jQ');
+        script.setAttribute('data-category', 'Announcements');
+        script.setAttribute('data-category-id', 'DIC_kwDOOA64jc4Cncjq');
+        script.setAttribute('data-mapping', 'title'); 
+        script.setAttribute('data-strict', '0');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'light');
+        script.setAttribute('data-lang', 'en');
+		script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        
+        document.querySelector('.site-footer').before(script)
+    })(document);
 </script>
+<div>
 
 <style>
   #particles-js {
@@ -897,8 +930,9 @@
     document.addEventListener('pjax:complete', () => {
         
         topbar.hide();
+         
+        window.Stack.init();
     })
 </script>
-
     </body>
 </html>
