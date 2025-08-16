@@ -89,7 +89,7 @@
         <div class="score">得分: <span id="score">0</span></div>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
         <div class="controls">
-            <p>使用方向键控制蛇的移动</p>
+            <p>使用WASD控制蛇的移动</p>
             <p>按空格键暂停/继续游戏</p>
         </div>
         
@@ -228,16 +228,16 @@
             if (!gameRunning && e.code !== 'Space') return;
 
             switch(e.code) {
-                case 'ArrowUp':
+                case 'W':
                     if (dy !== 1) { dx = 0; dy = -1; }
                     break;
-                case 'ArrowDown':
+                case 'S:
                     if (dy !== -1) { dx = 0; dy = 1; }
                     break;
-                case 'ArrowLeft':
+                case 'A':
                     if (dx !== 1) { dx = -1; dy = 0; }
                     break;
-                case 'ArrowRight':
+                case 'D':
                     if (dx !== -1) { dx = 1; dy = 0; }
                     break;
                 case 'Space':
