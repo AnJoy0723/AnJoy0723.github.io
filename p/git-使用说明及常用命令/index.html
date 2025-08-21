@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一、访问请求参数的方法 Java web中进行值传递的方法常用的有三种，分别是：\n使用JSP的forward或include动作，利用传参数子动作实现参数的传递，‘\n在JSP或HTML页面中，利用表单传递参数，\n">
-<title>Jsp</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Git 是一个版本控制系统，允许开发人员跟踪其代码随时间的变化。它允许多个人同时处理同一个代码库，并且如果出现问题，可以轻松恢复到以前的代码版本。\n一、版本检查 要检查系统上安装的 Git 版本，可以在终端或命令提示符中使用以下命令：\n">
+<title>Git 使用说明及常用命令</title>
 
-<link rel='canonical' href='https://anjoy0723.github.io/p/jsp/'>
+<link rel='canonical' href='https://anjoy0723.github.io/p/git-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
 
-<link rel="stylesheet" href="/scss/style.min.fc0971b300a5adbfaf66716db1ae31ade44d6d43999db7572fd6ef582f828d30.css"><meta property='og:title' content="Jsp">
-<meta property='og:description' content="一、访问请求参数的方法 Java web中进行值传递的方法常用的有三种，分别是：\n使用JSP的forward或include动作，利用传参数子动作实现参数的传递，‘\n在JSP或HTML页面中，利用表单传递参数，\n">
-<meta property='og:url' content='https://anjoy0723.github.io/p/jsp/'>
+<link rel="stylesheet" href="/scss/style.min.fc0971b300a5adbfaf66716db1ae31ade44d6d43999db7572fd6ef582f828d30.css"><meta property='og:title' content="Git 使用说明及常用命令">
+<meta property='og:description' content="Git 是一个版本控制系统，允许开发人员跟踪其代码随时间的变化。它允许多个人同时处理同一个代码库，并且如果出现问题，可以轻松恢复到以前的代码版本。\n一、版本检查 要检查系统上安装的 Git 版本，可以在终端或命令提示符中使用以下命令：\n">
+<meta property='og:url' content='https://anjoy0723.github.io/p/git-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2025-02-28T18:40:29&#43;08:00'/><meta property='article:modified_time' content='2025-03-01T10:35:34&#43;08:00'/>
-<meta name="twitter:title" content="Jsp">
-<meta name="twitter:description" content="一、访问请求参数的方法 Java web中进行值传递的方法常用的有三种，分别是：\n使用JSP的forward或include动作，利用传参数子动作实现参数的传递，‘\n在JSP或HTML页面中，利用表单传递参数，\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:tag' content='git' /><meta property='article:published_time' content='2025-08-21T10:25:27&#43;08:00'/><meta property='article:modified_time' content='2025-08-21T10:30:49&#43;08:00'/>
+<meta name="twitter:title" content="Git 使用说明及常用命令">
+<meta name="twitter:description" content="Git 是一个版本控制系统，允许开发人员跟踪其代码随时间的变化。它允许多个人同时处理同一个代码库，并且如果出现问题，可以轻松恢复到以前的代码版本。\n一、版本检查 要检查系统上安装的 Git 版本，可以在终端或命令提示符中使用以下命令：\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -261,7 +261,17 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#中文乱码解决">中文乱码解决：</a></li>
+    <li><a href="#1设置用户名">1.设置用户名</a></li>
+    <li><a href="#2设置用户邮箱">2.设置用户邮箱</a></li>
+    <li><a href="#3设置常用的文本编辑器">3.设置常用的文本编辑器</a></li>
+    <li><a href="#4检查git配置">4.检查git配置</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#1初始化git存储库">1.初始化git存储库</a></li>
+    <li><a href="#2暂存并提交更改">2.暂存并提交更改</a></li>
+    <li><a href="#3连接远程仓库">3.连接远程仓库</a></li>
+    <li><a href="#4推送到远程仓库">4.推送到远程仓库</a></li>
   </ol>
 </nav>
         </div>
@@ -289,7 +299,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/jsp/">Jsp</a>
+            <a href="/p/git-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 使用说明及常用命令</a>
         </h2>
     
         
@@ -311,7 +321,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Feb 28, 2025</time>
+                <time class="article-time--published">Aug 21, 2025</time>
             </div>
         
 
@@ -326,7 +336,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -349,129 +359,174 @@
     <section class="article-content">
     
     
-    <h1 id="一访问请求参数的方法">一、访问请求参数的方法
-</h1><p>Java web中进行值传递的方法常用的有三种，分别是：</p>
-<p>使用JSP的forward或include动作，利用传参数子动作实现参数的传递，‘</p>
-<p>在JSP或HTML页面中，利用表单传递参数，</p>
-<p>利用追加在网址后的参数传递或追加在超链接后的参数传递
-需注意的是：在上述的三种传参方式中，方式1和方式3属于get类型的参数提交方式，而方式2属于get或post方式的参数提交方式，它可以通过form的method属性进行参数的选择，</p>
-<p>get请求与post请求的不同之处是前者参数会显示在地址栏。</p>
-<p>GET请求：
-GET方法将请求的编码信息添加在网址后面，网址与编码信息通过&quot;?&ldquo;号分隔。如下所示：</p>
-<p><a class="link" href="http://www.runoob.com/hello?key1=value1&amp;key2=value2"  target="_blank" rel="noopener"
-    >http://www.runoob.com/hello?key1=value1&key2=value2</a></p>
-<p>GET方法是浏览器默认传递参数的方法，一些敏感信息，如密码等建议不使用GET方法。</p>
-<p>用get时，传输数据的大小有限制 （注意不是参数的个数有限制），最大为1024字节。</p>
-<p>POST请求：
-一些敏感信息，如密码等我们可以通过POST方法传递，POST提交数据是隐式的。</p>
-<p>POST提交数据是不可见的，GET是通过在url里面传递的（可以看一下你浏览器的地址栏）。</p>
-<p>JSP使用getParameter()来获得传递的参数，getInputStream()方法用来处理客户端的二进制数据流的请求。</p>
-<p>同时，request对象的getParameter()方法可以接收不同的来自于JSP页面或JSP动作传递给request对象的参数信息。该方法的使用格式如下：</p>
-<p>String 字符串变量 = request.getParameter(&ldquo;客户端提供参数的name属性名&rdquo;);</p>
-<p>其中需要注意的是：参数name与客户端提供参数的name属性名应该相同，同时request对象的getParameter()方法返回的是string类型的参数，如果参数name的值不存在，则会返回空值null</p>
-<h1 id="二form表单传参">二、form表单传参
-</h1><p>表单界面代码：</p>
-<body>
-    <form action="myjsp.jsp" method="post">
-     姓名：<input type="text" name="name"><br>
-     电话：<input type="text" name="tel"><br>
-     <input type="submit" value="提交">
-     </form>
-</body>
-<p>接收界面代码：</p>
- <body>
-<% String name = request.getParameter("name");
-    String tel = request.getParameter("tel");
-     %>
-     <font facr="楷体" size=5>
-     获取到的信息是：<br>
-     姓名：<%=name %>
-     电话：<%=tel %>
-     </font>
-</body>
-<h2 id="中文乱码解决">中文乱码解决：
-</h2><p>1、在接收界面的代码中，在获取参数值之前增加如下代码：
-<strong>request.setCharacterEncoding(&ldquo;utf-8&rdquo;);</strong>
-<strong>2、在提交表单的action后的method属性需设置为“post”。</strong></p>
- <body>
-    <%
-    request.setCharacterEncoding("utf-8");
-    String name = request.getParameter("name");
-    String tel = request.getParameter("tel");
-     %>
-     <font facr="楷体" size=5>
-     获取到的信息是：<br>
-     姓名：<%=name %>
-     电话：<%=tel %>
-     </font>
-  </body>
-  **3、在传递过来的中文参数中存在乱码问题，原因是中文参数采用了页面原有的“ISO-8859-1”编码，因此我们可能需要将传递过来的参数的编码格式修改为“UTF-8”格式，格式转换的代码如下：**
-  String name = new String(request.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
-<p>三、网址或超链接传参
-利用网址或超链接传参的格式如下：
-&lt;a href=”超链接或网址?参数名1=参数值1&amp;参数名2=参数值2&hellip;.”&gt;点击跳转</a></p>
-<p>传值界面代码：</p>
- <body>
-   <a href="myjsp.jsp?name=zhangsan&tel=123456">点击传值</a>
- </body>
- 接收界面代码：
-  <body>
-<%
-    String name = request.getParameter("name");
-    String tel = request.getParameter("tel");
-     %>
-     <font facr="楷体" size=5>
-     获取到的信息是：<br>
-     姓名：<%=name %>
-     电话：<%=tel %>
-     </font>
-  </body>
-<p>中文错误解决：
-原因是因为在超链接或网址传参中，参数属于网址的一部分，同时这一部分是属于URL编码的，不支持中文的utf-8，因此在传递中文时会显示网址错误，解决办法是将我们要传递的中文转成URL编码即可：
-java.net.URLEncoder.encode(&ldquo;中文&rdquo;,&ldquo;utf-8&rdquo;)将中文转换成URL编码
-提交界面代码：</p>
-<body>
-   <a href="myjsp.jsp?name=<%=java.net.URLEncoder.encode("张三","utf-8") %>&tel=123456">点击传值</a>
-  </body>
-<p>四、JSP子动作传参
-使用JSP的forward或include动作，利用传参数子动作实现参数的传递的方式，较其他两种方式有所不同，在该方式中用户可以根据需要在request对象中添加属性，然后在另一个JSP程序中获取到添加的数据，</p>
-<p>1、page范围
-pageContext:只在一个页面中保存属性，跳转之后失效。
-2、request范围
-request：只在一个请求中保存，服务跳转后依然有效。
-3、session范围
-session:在一次会话范围内，无论何种跳转都可以使用。
-4、application范围
-application:在整个服务器上保存。</p>
-<p>具体的使用方法如下：
-在传值页面使用request对象的setAttribute(“name”,obj)方法，可以把数据设定在request范围内，设置数据的方法格式为：
-void request.setAttribute(“key”,object);
-其中key为键，string类型，是要保存的数值的属性名。Object是要保存的参数值，属于object类型，
-使用上面的方法在传值页面进行请求转发之后，在接收页面使用getAttribute(“name”)方法就可以获取到name属性下的值，获取数据的方法格式如下：
-Object request.getAttribute(string name);
-其中的参数name表示键名，与setAttribute(“name”,obj)方法中的name相对应，获取的参数类型由obj的类型决定。</p>
-<p>参数传递界面代码：
-&lt;%
-//设置page范围的域对象
-pageContext.setAttribute(&ldquo;name1&rdquo;, &ldquo;zhangSan&rdquo;);
-//设置request范围的域对象
-request.setAttribute(&ldquo;name2&rdquo;, &ldquo;liSi&rdquo;);
-//设置session范围的域对象
-session.setAttribute(&ldquo;name3&rdquo;, &ldquo;wangWu&rdquo;);
-//设置application范围的域对象
-application.setAttribute(&ldquo;name4&rdquo;, &ldquo;zhaoLiu&rdquo;);</p>
-<p>//获取域对象中的值
-out.print(&ldquo;page范围:&quot;+pageContext.getAttribute(&ldquo;name1&rdquo;)+&quot;    &rdquo;);
-out.print(&ldquo;request范围:&quot;+request.getAttribute(&ldquo;name1&rdquo;)+&quot;    &rdquo;);
-out.print(&ldquo;session范围:&quot;+session.getAttribute(&ldquo;name1&rdquo;)+&quot;    &rdquo;);
-out.print(&ldquo;application范围:&quot;+application.getAttribute(&ldquo;name1&rdquo;)+&quot;    &rdquo;);
-%&gt;</p>
-<p>中文乱码解决
-<strong>要在页面的最前端将整个页面的编码设置为“UTF-8”或“GBK”的编码格式，</strong>
-&lt;%@ page language=&ldquo;java&rdquo; contentType=&ldquo;text/html; charset=GBK&rdquo;</p>
-<p>pageEncoding=&ldquo;GBK&rdquo;%&gt;</p>
-<p>&lt;%@ page language=&ldquo;java&rdquo; contentType=&ldquo;text/html; charset=UTF－８&rdquo;</p>
-<p>pageEncoding=&ldquo;UTF－８&rdquo;%&gt;</p>
+    <p>Git 是一个版本控制系统，允许开发人员跟踪其代码随时间的变化。它允许多个人同时处理同一个代码库，并且如果出现问题，可以轻松恢复到以前的代码版本。</p>
+<h1 id="一版本检查">一、版本检查
+</h1><p>要检查系统上安装的 Git 版本，可以在终端或命令提示符中使用以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git --version</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这将显示当前安装在系统上的 Git 的版本号。例如，输出可能如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git version 2.39.2</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="二配置">二、配置
+</h1><p>要在本地配置 Git，需要设置一些基本属性，以标识你是在 Git 中所做更改的作者。以下是在本地配置 Git 的步骤：</p>
+<h2 id="1设置用户名">1.设置用户名
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w"> </span><span class="l">git config --global user.name &#34;Your Name&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2设置用户邮箱">2.设置用户邮箱
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git config --global user.email &#34;your-email@example.com&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3设置常用的文本编辑器">3.设置常用的文本编辑器
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git config --global core.editor &#34;editor-of-your-choice&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>eg:将首选文本编辑器设置为Nano:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git config --global core.editor nano</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4检查git配置">4.检查git配置
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w"> </span><span class="l">git config --list</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="如何启动git存储库">如何启动git存储库
+</h1><h2 id="1初始化git存储库">1.初始化git存储库
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">cd &lt;directory&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">git init</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2暂存并提交更改">2.暂存并提交更改
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git add &lt;file&gt;</span><span class="w"> </span><span class="c"># 添加指定文件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">git add .      </span><span class="w"> </span><span class="c"># 添加所有更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">git commit -m &#34;Your commit message&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>file 为需要暂存的文件
+Your commit message:具体的更改信息</p>
+<h2 id="3连接远程仓库">3.连接远程仓库
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git remote add origin &lt;repository-url&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4推送到远程仓库">4.推送到远程仓库
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">git push origin &lt;branch&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>branch 为远程仓库分支</p>
+<h1 id="三常用git命令">三、常用Git命令
+</h1><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>命令</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>查看状态</td>
+          <td><code>git status</code></td>
+      </tr>
+      <tr>
+          <td>查看提交历史</td>
+          <td><code>git log</code> 或 <code>git log --oneline</code></td>
+      </tr>
+      <tr>
+          <td>查看差异</td>
+          <td><code>git diff</code></td>
+      </tr>
+      <tr>
+          <td>创建分支</td>
+          <td><code>git branch &lt;branch-name&gt;</code></td>
+      </tr>
+      <tr>
+          <td>切换分支</td>
+          <td><code>git checkout &lt;branch-name&gt;</code> 或 <code>git switch &lt;branch-name&gt;</code></td>
+      </tr>
+      <tr>
+          <td>合并分支</td>
+          <td><code>git merge &lt;branch-name&gt;</code></td>
+      </tr>
+      <tr>
+          <td>拉取远程更新</td>
+          <td><code>git pull origin &lt;branch-name&gt;</code></td>
+      </tr>
+      <tr>
+          <td>克隆仓库</td>
+          <td><code>git clone &lt;repository-url&gt;</code></td>
+      </tr>
+      <tr>
+          <td>回退版本</td>
+          <td><code>git reset --hard &lt;commit-id&gt;</code></td>
+      </tr>
+      <tr>
+          <td>查看分支列表</td>
+          <td><code>git branch -a</code></td>
+      </tr>
+      <tr>
+          <td>删除分支</td>
+          <td><code>git branch -d &lt;branch-name&gt;</code></td>
+      </tr>
+  </tbody>
+</table></div>
 
 </section>
 
@@ -481,6 +536,8 @@ out.print(&ldquo;application范围:&quot;+application.getAttribute(&ldquo;name1&
     <section class="article-tags">
         
             <a href="/tags/markdown/">Markdown</a>
+        
+            <a href="/tags/git/">Git</a>
         
     </section>
 
@@ -507,7 +564,7 @@ out.print(&ldquo;application范围:&quot;+application.getAttribute(&ldquo;name1&
 
 
         <span>
-            最后更新于 Mar 01, 2025 10:35 &#43;0800
+            最后更新于 Aug 21, 2025 10:30 &#43;0800
         </span>
     </section></footer>
 
@@ -526,12 +583,12 @@ out.print(&ldquo;application范围:&quot;+application.getAttribute(&ldquo;name1&
             
                 
 <article class="">
-    <a href="/p/git-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+    <a href="/p/jsp/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Git 使用说明及常用命令</h2>
+            <h2 class="article-title">Jsp</h2>
         </div>
     </a>
 </article>
