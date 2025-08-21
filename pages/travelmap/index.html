@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>我的足迹地图</title>
+    <style>
+        /* 样式保持不变 */
+        html, body, #footprint-map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        
+        .custom-content-marker {
+            position: relative;
+            width: 25px;
+            height: 34px;
+        }
+        
+        .custom-content-marker img {
+            width: 100%;
+            height: 100%;
+        }
+        
+       /* 信息窗口容器 */
+        .info-window {
+            width: 300px !important;
+            max-width: 90vw;
+            background: rgba(255, 255, 255, 0.15); /* 毛玻璃基础透明度 */
+            backdrop-filter: blur(12px); /* 毛玻璃模糊强度 */
+            -webkit-backdrop-filter: blur(12px); /* Safari兼容 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* 卡片主体样式 */
+        .card {
+            background: transparent;
+            border: none;
+        }
+        
+        /* 卡片内容区域 */
+        .card-body {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.08); /* 内容区域透明度 */
+            backdrop-filter: blur(8px); /* 内容区域模糊强度 */
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        /* 图片样式 */
+        .card-img-top {
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 标题样式 */
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 日期样式 */
+        .card-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            color: #ced4da;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 日记内容样式 */
+        .diary-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: black;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        /* 日记装饰性引号 */
+        .diary-content::before {
+            content: "“";
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 3rem;
+            color: #ced4da;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* 悬停动画 */
+        .card {
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+<div id="footprint-map"></div>
+<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://webapi.amap.com/maps?v=2.0&key=8856706e1c16e6cca2bcdaa0a508dd80"></script>
+<script>
+    // 初始化地图
+    var map = new AMap.Map('footprint-map', {
+        viewMode: '2D',
+        zoom: 5,
+        center: [108.93984, 34.34127],
+        mapStyle: "amap://styles/grey"
+    });
+    
+    // 添加缩放控件（修正后的正确用法）
+    AMap.plugin(['AMap.ControlBar'], function() {
+    // 创建 ControlBar 实例
+    var controlBar = new AMap.ControlBar({
+        position: { right: '20px', bottom: '20px' } // 可选：自定义位置
+    });
+    
+    // 添加到地图
+    map.addControl(controlBar);
+});
+    
+    // 足迹数据（保持不变）
+    const footprints = [
+        {
+            name: "南京",
+            date: "2023-05-01",
+            position: [118.753377,32.062594999999995],
+            image: "./images/nanjing.jpg",
+            diary: "你失约的南京，我替你来了。"
+        },
+        {
+            name: "萍乡-武功山",
+            date: "2023-04-30",
+            position: [114.176218,27.468071],
+            image: "./images/pingxiang.jpg",
+            diary: "大学生特种兵旅游第一站————武功山。"
+        },
+        {
+            name: "武汉",
+            date: "2023-05-02",
+            position: [114.36444000000006,30.536286000000004],
+            image: "./images/wuhan.jpg",
+            diary: "昔人已乘黄鹤去，此地空余黄鹤楼。"
+        },
+        {
+            name: "重庆",
+            date: "2023-08-26",
+            position: [106.50627000000009,29.503900000000023],
+            image: "./images/chongqing.jpg",
+            diary: "你以为这里是二十三楼，其实是一楼，山城重庆太太有意思了！"
+        },
+        {
+            name: "凤凰古城",
+            date: "2024-08-19",
+            position: [109.60224330466008,27.977094129760015],
+            image: "./images/fenghuang.jpg",
+            diary: "来凤凰古城光上网了┭┮﹏┭┮。"
+        },
+        {
+            name: "张家界-天门山",
+            date: "2024-8-20",
+            position: [110.451551,29.15189900000002],
+            image: "./images/zhangjiajie.jpg",
+            diary: "爬山累死了。"
+        }, 
+        {
+            name: "长沙-橘子洲",
+            date: "2020-8-6",
+            position: [112.962283,28.193248],
+            image: "./images/changsha.jpg",
+            diary: "欲买桂花同载酒，终不似，少年游。"
+        }
+    ];
+    
+    // 为每个足迹添加标记（保持不变）
+    footprints.forEach(footprint => {
+        const marker = new AMap.Marker({
+            position: footprint.position,
+            content: `<div class="custom-content-marker">
+                        <img src="./images/heart.svg">
+                      </div>`,
+            offset: new AMap.Pixel(-20, -20)
+        });
+        
+        marker.on('click', function() {
+            const infoWindow = new AMap.InfoWindow({
+                content: createInfoWindowContent(footprint),
+                // 调整 offset 参数（示例值，可根据需要微调）
+                offset: new AMap.Pixel(0, -20), // 
+                autoMove: false // 关闭自动移动功能
+            });
+            infoWindow.open(map, footprint.position);
+        });
+        
+        map.add(marker);
+    });
+    
+    function createInfoWindowContent(footprint) {
+        return `
+            <div class="info-window p-3 rounded shadow-sm bg-white">
+                <div class="card">
+                    <img src="${footprint.image}" class="card-img-top" alt="${footprint.name}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>
+                            ${footprint.name}
+                        </h5>
+                        <p class="card-text text-muted mb-3">
+                            <i class="bi bi-calendar me-2"></i>
+                            ${footprint.date}
+                        </p>
+                        <div class="diary-content">
+                            <p class="text-start">${footprint.diary}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>
