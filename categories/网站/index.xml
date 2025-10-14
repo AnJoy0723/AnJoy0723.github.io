@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>AnJoy</copyright>
-        <lastBuildDate>Fri, 22 Aug 2025 01:17:01 +0000</lastBuildDate><atom:link href="https://anjoy0723.github.io/categories/%E7%BD%91%E7%AB%99/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 14 Oct 2025 06:56:51 +0000</lastBuildDate><atom:link href="https://anjoy0723.github.io/categories/%E7%BD%91%E7%AB%99/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>月姬 Tsukihime</title>
         <link>https://anjoy0723.github.io/p/%E6%9C%88%E5%A7%AC-tsukihime/</link>
         <pubDate>Sun, 13 Apr 2025 18:33:48 +0800</pubDate>
@@ -64,29 +64,6 @@
         <guid>https://anjoy0723.github.io/p/%E8%B4%AA%E5%90%83%E8%9B%87%E7%BD%91%E9%A1%B5%E7%89%88/</guid>
         <description>&lt;iframe src=&#34;https://anjoy0723.github.io/pages/snake/index.html&#34; width=&#34;100%&#34; height=&#34;1000&#34;&gt;&lt;/iframe&gt;
 </description>
-        </item>
-        <item>
-        <title>抑郁情感检测</title>
-        <link>https://anjoy0723.github.io/p/%E6%8A%91%E9%83%81%E6%83%85%E6%84%9F%E6%A3%80%E6%B5%8B/</link>
-        <pubDate>Sun, 02 Mar 2025 22:36:29 +0800</pubDate>
-        
-        <guid>https://anjoy0723.github.io/p/%E6%8A%91%E9%83%81%E6%83%85%E6%84%9F%E6%A3%80%E6%B5%8B/</guid>
-        <description>&lt;iframe src=&#34;http://121.40.239.147/&#34; width=&#34;100%&#34; height=&#34;600&#34;&gt;&lt;/iframe&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;links&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;文本转图片&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;文本转图片服务&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;website&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;http://121.40.239.147/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
         </item>
         
     </channel>
