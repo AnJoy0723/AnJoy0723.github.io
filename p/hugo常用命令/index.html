@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="相关信息 1 2 3 4 5 6 7 8 yarn : 无法加载文件 C:\\Users\\Administrator\\AppData\\Roaming\\npm\\yarn.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go .microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。 所在位置 行:1 字符: 1 + yarn + ~~~~ + CategoryInfo : SecurityError: (:) []，PSSecurityException + FullyQualifiedErrorId : UnauthorizedAccess 错误信息：\n">
-<title>如何解决vscode终端无法使用XX脚本报错</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="创建文章 1 hugo new post/xxx/xxx.md 预览网站 1 2 hugo server -D hugo server 两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：\nhugo server：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。 hugo server -D：-D\u00a0是\u00a0--buildDrafts\u00a0的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。 清楚缓存 1 2 3 hugo --gc hugo --gc --minify hugo server --gc -D 当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：\n">
+<title>Hugo常用命令</title>
 
-<link rel='canonical' href='https://anjoy0723.github.io/p/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3vscode%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8xx%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99/'>
+<link rel='canonical' href='https://anjoy0723.github.io/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
 
-<link rel="stylesheet" href="/scss/style.min.9b883890c9d371690cb2f3aee9c265f4a8f65425d4e83b5c4868ac58e3b5edc0.css"><meta property='og:title' content="如何解决vscode终端无法使用XX脚本报错">
-<meta property='og:description' content="相关信息 1 2 3 4 5 6 7 8 yarn : 无法加载文件 C:\\Users\\Administrator\\AppData\\Roaming\\npm\\yarn.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go .microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。 所在位置 行:1 字符: 1 + yarn + ~~~~ + CategoryInfo : SecurityError: (:) []，PSSecurityException + FullyQualifiedErrorId : UnauthorizedAccess 错误信息：\n">
-<meta property='og:url' content='https://anjoy0723.github.io/p/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3vscode%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8xx%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99/'>
+<link rel="stylesheet" href="/scss/style.min.9b883890c9d371690cb2f3aee9c265f4a8f65425d4e83b5c4868ac58e3b5edc0.css"><meta property='og:title' content="Hugo常用命令">
+<meta property='og:description' content="创建文章 1 hugo new post/xxx/xxx.md 预览网站 1 2 hugo server -D hugo server 两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：\nhugo server：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。 hugo server -D：-D\u00a0是\u00a0--buildDrafts\u00a0的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。 清楚缓存 1 2 3 hugo --gc hugo --gc --minify hugo server --gc -D 当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：\n">
+<meta property='og:url' content='https://anjoy0723.github.io/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-08-16T22:02:23&#43;08:00'/><meta property='article:modified_time' content='2025-10-27T08:58:02&#43;00:00'/>
-<meta name="twitter:title" content="如何解决vscode终端无法使用XX脚本报错">
-<meta name="twitter:description" content="相关信息 1 2 3 4 5 6 7 8 yarn : 无法加载文件 C:\\Users\\Administrator\\AppData\\Roaming\\npm\\yarn.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go .microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。 所在位置 行:1 字符: 1 + yarn + ~~~~ + CategoryInfo : SecurityError: (:) []，PSSecurityException + FullyQualifiedErrorId : UnauthorizedAccess 错误信息：\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HUGO相关' /><meta property='article:published_time' content='2025-10-27T16:47:44&#43;08:00'/><meta property='article:modified_time' content='2025-10-27T08:58:02&#43;00:00'/>
+<meta name="twitter:title" content="Hugo常用命令">
+<meta name="twitter:description" content="创建文章 1 hugo new post/xxx/xxx.md 预览网站 1 2 hugo server -D hugo server 两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：\nhugo server：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。 hugo server -D：-D\u00a0是\u00a0--buildDrafts\u00a0的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。 清楚缓存 1 2 3 hugo --gc hugo --gc --minify hugo server --gc -D 当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -241,7 +241,42 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#创建文章">创建文章</a></li>
+    <li><a href="#预览网站">预览网站</a></li>
+    <li><a href="#清楚缓存">清楚缓存</a></li>
+    <li><a href="#发布文章">发布文章</a></li>
+    <li><a href="#其他">其他</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -252,7 +287,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3vscode%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8xx%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99/">如何解决vscode终端无法使用XX脚本报错</a>
+            <a href="/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Hugo常用命令</a>
         </h2>
     
         
@@ -274,7 +309,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 16, 2025</time>
+                <time class="article-time--published">Oct 27, 2025</time>
             </div>
         
 
@@ -289,7 +324,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -312,56 +347,119 @@
     <section class="article-content">
     
     
-    <h1 id="相关信息">相关信息
-</h1><div class="highlight"><div class="chroma">
+    <h2 id="创建文章">创建文章
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo new post/xxx/xxx.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="预览网站">预览网站
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo server -D
+</span></span><span class="line"><span class="cl">hugo server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：</p>
+<ul>
+<li><code>hugo server</code>：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。</li>
+<li><code>hugo server -D</code>：<code>-D</code> 是 <code>--buildDrafts</code> 的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。</li>
+</ul>
+<h2 id="清楚缓存">清楚缓存
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo --gc
+</span></span><span class="line"><span class="cl">hugo --gc --minify
+</span></span><span class="line"><span class="cl">hugo server --gc -D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：</p>
+<ul>
+<li><code>hugo --gc</code>：<code>--gc</code> 标志的作用是在构建过程中执行垃圾回收（Garbage Collection），即清除不再使用的缓存文件，这样能释放磁盘空间。如果对网站配置或内容进行了大量修改，旧的缓存不再使用，该命令能保证生成的网站是最新状态。</li>
+<li><code>hugo --gc --minify</code>：除了具备执行垃圾回收功能外，<code>--minify</code> 标志还会对生成的 HTML、CSS、JavaScript 等文件进行压缩。可以减小文件大小，从而提升网站的加载速度。适合<strong>在准备将网站部署到生产环境时</strong>使用，能提供更流畅的访问体验。</li>
+<li><code>hugo server --gc -D</code>：启动一个实时预览服务器，同时执行垃圾回收，确保使用的是最新的缓存。适合<strong>在开发过程中</strong>使用，当频繁修改文章内容，并希望随时预览草稿文章在内的网站效果时最方便。</li>
+</ul>
+<h2 id="发布文章">发布文章
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">yarn </span><span class="p">:</span><span class="w"> </span><span class="l">无法加载文件 C:\Users\Administrator\AppData\Roaming\npm\yarn.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">所在位置 行:1 字符</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">+ yarn</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">+ ~~~~</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">+ CategoryInfo : SecurityError</span><span class="p">:</span><span class="w"> </span><span class="l">(:) []，PSSecurityException</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">+ FullyQualifiedErrorId </span><span class="p">:</span><span class="w"> </span><span class="l">UnauthorizedAccess</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m &#34;xxx&#34;
+</span></span><span class="line"><span class="cl">git remote add origin {github仓库地址}
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>错误信息：</strong></p>
-<center><figure><img src="/p/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3vscode%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8xx%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99/img1.jpg" width="100%"><figcaption>
-      <h4>错误信息</h4>
-    </figcaption>
-</figure>
-</center>
-<h1 id="解决办法">解决办法
-</h1><p>用管理员身份运行 PowerShell，然后输入</p>
+</div><ul>
+<li><code>git init</code>：初始化一个新的 Git 仓库，会将当前目录变为一个Git仓库。并生成一个名为 <code>.git</code> 的隐藏目录，包含了 Git 管理项目所需的各种配置文件和数据结构。</li>
+<li><code>git add .</code>：用于把文件的修改添加到暂存区。可以在暂存区（Git中的一个中间区域）组织和规划哪些修改要包含在下次提交中。<code>.</code> 代表当前目录下的所有文件和子目录。</li>
+<li><code>git commit -m &quot;xxx&quot;</code>：用于将暂存区的修改保存到本地仓库的历史记录中，<code>-m</code> 标志后面跟着的 <code>&quot;xxx&quot;</code> 是本次提交的说明信息。</li>
+<li><code>git remote add origin xxx</code>：用于管理与远程仓库（一般是GitHub创建的远仓）的连接。<code>add</code> 子命令用于添加一个新的远程仓库。<code>origin</code> 是远程仓库的默认名。这会将本地仓库与该 GitHub 仓库建立连接。</li>
+<li><code>git push -u origin main</code>：用于将本地仓库的提交推送到远程仓库。<code>-u</code>会将本地的 <code>main</code> 分支与远程仓库的 <code>main</code> 分支关联起来，这样在后续的推送操作中，你只需要执行 <code>git push</code> 即可。<code>origin</code> 是远程仓库的别名，<code>main</code> 是要推送的本地分支名称。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git push
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>git push -u origin main</code>：除了将本地的 <code>main</code> 分支推送到远程 <code>origin</code> 仓库的 <code>main</code> 分支外，还会建立本地 <code>main</code> 分支和远程 <code>origin/main</code> 分支的关联。建立关联后，后续使用 <code>git push</code> 或 <code>git pull</code> 时，Git 会知道默认操作的远程分支。<strong>通常在首次将本地分支推送到远程仓库时使用</strong>，这样后续无需每次都指定远程仓库和分支。</li>
+<li><code>git push</code>：如果本地分支已经和远程分支建立了关联，使用该命令可以简化操作，快速将本地更新推送到远程。适合在本地分支和远程分支已经建立关联的情况下。</li>
+</ul>
+<h2 id="其他">其他
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git remote -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看本地仓库与哪些远程仓库进行了连接的命令。执行该命令后，会列出本地仓库所关联的所有远程仓库的别名以及对应的远程仓库的 URL 地址。这里会展示 <code>fetch</code>（拉取）和 <code>push</code>（推送）对应的地址，一般情况下二者是相同的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set-executionpolicy remotesigned
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>再输入y确认即可</p>
-<center><figure><img src="/p/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3vscode%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8xx%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99/img2.jpg" width="100%"><figcaption>
-      <h4>PowerShell</h4>
-    </figcaption>
-</figure>
-</center>
+</div><p>查看hugo版本</p>
+
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/hugo%E7%9B%B8%E5%85%B3/">HUGO相关</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">

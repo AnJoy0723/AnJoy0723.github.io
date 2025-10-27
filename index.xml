@@ -7,6 +7,125 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>AnJoy</copyright><atom:link href="https://anjoy0723.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo常用命令</title>
+        <link>https://anjoy0723.github.io/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+        <pubDate>Mon, 27 Oct 2025 16:47:44 +0800</pubDate>
+        
+        <guid>https://anjoy0723.github.io/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <description>&lt;h2 id=&#34;创建文章&#34;&gt;创建文章
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new post/xxx/xxx.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;预览网站&#34;&gt;预览网站
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server -D
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;hugo server&lt;/code&gt;：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo server -D&lt;/code&gt;：&lt;code&gt;-D&lt;/code&gt; 是 &lt;code&gt;--buildDrafts&lt;/code&gt; 的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;清楚缓存&#34;&gt;清楚缓存
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo --gc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo --gc --minify
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server --gc -D
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;hugo --gc&lt;/code&gt;：&lt;code&gt;--gc&lt;/code&gt; 标志的作用是在构建过程中执行垃圾回收（Garbage Collection），即清除不再使用的缓存文件，这样能释放磁盘空间。如果对网站配置或内容进行了大量修改，旧的缓存不再使用，该命令能保证生成的网站是最新状态。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo --gc --minify&lt;/code&gt;：除了具备执行垃圾回收功能外，&lt;code&gt;--minify&lt;/code&gt; 标志还会对生成的 HTML、CSS、JavaScript 等文件进行压缩。可以减小文件大小，从而提升网站的加载速度。适合&lt;strong&gt;在准备将网站部署到生产环境时&lt;/strong&gt;使用，能提供更流畅的访问体验。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo server --gc -D&lt;/code&gt;：启动一个实时预览服务器，同时执行垃圾回收，确保使用的是最新的缓存。适合&lt;strong&gt;在开发过程中&lt;/strong&gt;使用，当频繁修改文章内容，并希望随时预览草稿文章在内的网站效果时最方便。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;发布文章&#34;&gt;发布文章
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &amp;#34;xxx&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin {github仓库地址}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;：初始化一个新的 Git 仓库，会将当前目录变为一个Git仓库。并生成一个名为 &lt;code&gt;.git&lt;/code&gt; 的隐藏目录，包含了 Git 管理项目所需的各种配置文件和数据结构。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git add .&lt;/code&gt;：用于把文件的修改添加到暂存区。可以在暂存区（Git中的一个中间区域）组织和规划哪些修改要包含在下次提交中。&lt;code&gt;.&lt;/code&gt; 代表当前目录下的所有文件和子目录。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git commit -m &amp;quot;xxx&amp;quot;&lt;/code&gt;：用于将暂存区的修改保存到本地仓库的历史记录中，&lt;code&gt;-m&lt;/code&gt; 标志后面跟着的 &lt;code&gt;&amp;quot;xxx&amp;quot;&lt;/code&gt; 是本次提交的说明信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add origin xxx&lt;/code&gt;：用于管理与远程仓库（一般是GitHub创建的远仓）的连接。&lt;code&gt;add&lt;/code&gt; 子命令用于添加一个新的远程仓库。&lt;code&gt;origin&lt;/code&gt; 是远程仓库的默认名。这会将本地仓库与该 GitHub 仓库建立连接。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push -u origin main&lt;/code&gt;：用于将本地仓库的提交推送到远程仓库。&lt;code&gt;-u&lt;/code&gt;会将本地的 &lt;code&gt;main&lt;/code&gt; 分支与远程仓库的 &lt;code&gt;main&lt;/code&gt; 分支关联起来，这样在后续的推送操作中，你只需要执行 &lt;code&gt;git push&lt;/code&gt; 即可。&lt;code&gt;origin&lt;/code&gt; 是远程仓库的别名，&lt;code&gt;main&lt;/code&gt; 是要推送的本地分支名称。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git push -u origin main&lt;/code&gt;：除了将本地的 &lt;code&gt;main&lt;/code&gt; 分支推送到远程 &lt;code&gt;origin&lt;/code&gt; 仓库的 &lt;code&gt;main&lt;/code&gt; 分支外，还会建立本地 &lt;code&gt;main&lt;/code&gt; 分支和远程 &lt;code&gt;origin/main&lt;/code&gt; 分支的关联。建立关联后，后续使用 &lt;code&gt;git push&lt;/code&gt; 或 &lt;code&gt;git pull&lt;/code&gt; 时，Git 会知道默认操作的远程分支。&lt;strong&gt;通常在首次将本地分支推送到远程仓库时使用&lt;/strong&gt;，这样后续无需每次都指定远程仓库和分支。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push&lt;/code&gt;：如果本地分支已经和远程分支建立了关联，使用该命令可以简化操作，快速将本地更新推送到远程。适合在本地分支和远程分支已经建立关联的情况下。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看本地仓库与哪些远程仓库进行了连接的命令。执行该命令后，会列出本地仓库所关联的所有远程仓库的别名以及对应的远程仓库的 URL 地址。这里会展示 &lt;code&gt;fetch&lt;/code&gt;（拉取）和 &lt;code&gt;push&lt;/code&gt;（推送）对应的地址，一般情况下二者是相同的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看hugo版本&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>PFC学习记录</title>
+        <link>https://anjoy0723.github.io/p/pfc%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Mon, 27 Oct 2025 16:46:25 +0800</pubDate>
+        
+        <guid>https://anjoy0723.github.io/p/pfc%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+        <description>&lt;h2 id=&#34;day-1&#34;&gt;DAY 1
+&lt;/h2&gt;&lt;p&gt;今天开始正式学习PFC软件，浅浅记录一下，看得头疼。。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Codex接入第三方key</title>
         <link>https://anjoy0723.github.io/p/codex%E6%8E%A5%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9key/</link>
         <pubDate>Tue, 14 Oct 2025 14:25:06 +0800</pubDate>
