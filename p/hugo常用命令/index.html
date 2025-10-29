@@ -10,7 +10,7 @@
 <meta property='og:description' content="创建文章 1 hugo new post/xxx/xxx.md 预览网站 1 2 hugo server -D hugo server 两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：\nhugo server：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。 hugo server -D：-D\u00a0是\u00a0--buildDrafts\u00a0的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。 清楚缓存 1 2 3 hugo --gc hugo --gc --minify hugo server --gc -D 当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：\n">
 <meta property='og:url' content='https://anjoy0723.github.io/p/hugo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HUGO相关' /><meta property='article:published_time' content='2025-10-27T16:47:44&#43;08:00'/><meta property='article:modified_time' content='2025-10-27T08:58:02&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HUGO相关' /><meta property='article:published_time' content='2025-10-27T16:47:44&#43;08:00'/><meta property='article:modified_time' content='2025-10-29T07:27:07&#43;00:00'/>
 <meta name="twitter:title" content="Hugo常用命令">
 <meta name="twitter:description" content="创建文章 1 hugo new post/xxx/xxx.md 预览网站 1 2 hugo server -D hugo server 两者都是用于启动 Hugo 本地开发服务器的命令，区别主要在于是否包含草稿文章方面：\nhugo server：启动一个本地开发服务器，该服务器会对项目文件的变更进行监控，一旦文件有改动，就会实时重新生成网站。不过，在生成网站内容时，它默认不会包含草稿文章。 hugo server -D：-D\u00a0是\u00a0--buildDrafts\u00a0的简写。样会启动本地开发服务器，实现对文件变更的监控和网站的实时更新与刷新。不同的是，在生成网站时会将草稿文章也包含进去。 清楚缓存 1 2 3 hugo --gc hugo --gc --minify hugo server --gc -D 当预览修改文章时，发现页面没变化，可以尝试清除缓存并重新构建：\n">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -419,14 +419,17 @@
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git push
 </span></span><span class="line"><span class="cl">git push -u origin main
+</span></span><span class="line"><span class="cl">git push --force origin main
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>git push -u origin main</code>：除了将本地的 <code>main</code> 分支推送到远程 <code>origin</code> 仓库的 <code>main</code> 分支外，还会建立本地 <code>main</code> 分支和远程 <code>origin/main</code> 分支的关联。建立关联后，后续使用 <code>git push</code> 或 <code>git pull</code> 时，Git 会知道默认操作的远程分支。<strong>通常在首次将本地分支推送到远程仓库时使用</strong>，这样后续无需每次都指定远程仓库和分支。</li>
+<li><code>git push --force origin main</code>:<strong>强制</strong>把本地 <code>main</code> 分支覆盖到远程 <code>main</code> 分支，<strong>不管远程是否有新提交</strong></li>
 <li><code>git push</code>：如果本地分支已经和远程分支建立了关联，使用该命令可以简化操作，快速将本地更新推送到远程。适合在本地分支和远程分支已经建立关联的情况下。</li>
 </ul>
 <h2 id="其他">其他
@@ -483,7 +486,7 @@
 
 
         <span>
-            最后更新于 Oct 27, 2025 08:58 UTC
+            最后更新于 Oct 29, 2025 07:27 UTC
         </span>
     </section></footer>
 

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="DAY 1 今天开始正式学习PFC软件，浅浅记录一下，看得头疼。。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="PFC 5.0 常用命令行指令手册 1. 项目文件操作 1.1 文件加载 1 2 3 4 5 6 7 8 ; 加载项目文件 project load &#39;filename.p2prj&#39; ; 加载数据文件 restore &#39;filename.p2dat&#39; ; 加载保存文件 restore &#39;filename.p2sav&#39; 1.2 文件保存 1 2 3 4 5 6 7 8 ; 保存数据文件 save &#39;filename.p2dat&#39; ; 保存项目文件（会自动保存为.p2prj格式） project save &#39;filename&#39; ; 保存所有数据 save 2. 计算控制命令 2.1 计算初始化 1 2 3 4 5 ; 初始化计算 new ; 清空所有对象 reset 2.2 求解控制 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 设置求解步数 solve &#39;time 1000.0&#39; ; 设置收敛标准 solve accuracy 0.001 ; 求解直到收敛 solve ; 暂停计算 pause ; 继续计算 continue ; 停止求解 stop 2.3 步长控制 1 2 3 4 5 6 7 8 9 10 11 ; 设置时间步长 set dt 0.1 ; 自动调整时间步长 set auto on ; 设置最大步长 set dt max 1.0 ; 设置最小步长 set dt min 0.001 3. 对象创建命令 3.1 颗粒创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 创建圆形颗粒 ball create id 1 position 0 0 radius 0.5 ; 创建多个随机颗粒 ball create radius 0.1 0.2 number 100 ... position -5 5 -5 5 ; 创建规则排列的颗粒 ball distribute hex packed ... radius 0.5 0.6 ... number 1000 ... box -10 10 -10 10 -10 10 ; 生成颗粒并填充区域 ball generate radius 0.5 ... number 1000 ... box -10 10 -10 10 -10 10 3.2 墙创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 创建平面墙 wall create plane position 0 0 0 normal 0 1 0 ; 创建线段墙（2D） wall create line position -10 0 10 0 ; 创建立方体墙 wall create box -10 10 -10 10 -10 10 ; 创建圆柱墙 wall create cylinder axis z ... base -5 -5 0 ... top -5 -5 10 ... radius 5 3.3 块体创建 1 2 3 4 5 6 7 8 ; 创建一个块体 block create brick 0 10 0 10 0 10 ; 创建规则块体阵列 block distribute hex packed ... size 1 1 1 ... number 10 10 5 ... box 0 10 0 10 0 5 4. 材料属性设置 4.1 接触模型设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 设置线接触模型 contact model linear ; 设置赫兹接触模型 contact model hertz ; 设置接触黏结模型 contact model contactbond ; 设置平行黏结模型 contact model parallelbond ; 设置摩擦接触模型 contact model friction 4.2 颗粒属性设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ; 设置密度 ball density 2650 ; 设置弹性模量 ball young 50e9 ; 设置泊松比 ball poisson 0.25 ; 设置摩擦系数 ball friction 0.5 ; 设置接触强度 ball contact stiffness shear 1e8 ball contact stiffness normal 1e8 4.3 墙属性设置 1 2 3 4 5 6 7 8 ; 设置墙摩擦系数 wall friction 0.6 ; 设置墙弹性模量 wall young 50e9 ; 设置墙泊松比 wall poisson 0.2 5. 边界条件设置 5.1 重力设置 1 2 3 4 5 ; 设置重力加速度 set gravity 0 0 -9.81 ; 关闭重力 set gravity 0 0 0 5.2 速度/位移边界 1 2 3 4 5 6 7 8 ; 设置颗粒速度 ball velocity 1 0 0 range id 1 100 ; 设置墙速度 wall velocity 0.01 0 0 range id 1 ; 固定边界（零速度） ball velocity 0 0 0 range position-y 10 11 5.3 应力/力边界 1 2 3 4 5 ; 施加均匀应力 apply stress 1000 0 0 0 0 0 range box -5 5 -5 5 -5 5 ; 施加集中力 apply force 100 0 0 range id 1 6. 状态查询命令 6.1 系统信息 1 2 3 4 5 6 7 8 ; 显示系统信息 info ; 显示FISH变量列表 list fish ; 显示材料模型列表 list contact model 6.2 统计信息 1 2 3 4 5 6 7 8 9 10 11 ; 显示计算状态 print STEP print TIME ; 显示力链信息 print contacts active print contacts total ; 显示颗粒统计 print balls active print balls total 6.3 变量监控 1 2 3 4 5 6 7 8 9 10 11 ; 监控不平衡力 plot不平衡力 history ; 监控动能 plot KE history ; 监控势能 plot PE history ; 监控平均应力 plot平均应力 history 7. 图形显示命令 7.1 基本绘图 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 显示所有颗粒 plot ball ; 显示所有墙 plot wall ; 显示接触 plot contact ; 显示力链 plot contact force ; 显示速度矢量 plot ball velocity 7.2 绘图选项 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 设置颜色映射 plot add colorby vel-mag ; 设置显示范围 plot set xaxis -10 10 plot set yaxis -10 10 plot set zaxis -10 10 ; 保存图片 plot export &#39;filename.png&#39; width 1200 height 800 ; 显示网格 plot set grid on 7.3 切片显示 1 2 3 4 5 ; 创建切片 plot add slice origin 0 0 0 normal 1 0 0 ; 切片显示应力 plot add slice colorby szz 8. FISH语言命令 8.1 FISH变量 1 2 3 4 5 6 7 ; 定义FISH变量 fish define myvariable myvariable = 10.5 end ; 运行FISH函数 fish run myfunction 8.2 循环结构 1 2 3 4 5 6 7 8 9 ; FISH循环 loop while (step &lt; 1000) ; 循环体 endloop ; FISH计数循环 loop for (i = 1 to 100) ; 循环体 endloop 8.3 条件判断 1 2 3 4 5 6 ; 条件语句 if (condition) then ; 执行语句 else ; 替代语句 endif 9. 测量命令 9.1 创建测量圆 1 2 3 4 5 ; 创建测量圆（2D） measure create position 0 0 radius 5 ; 创建测量球（3D） measure create position 0 0 0 radius 5 9.2 测量参数 1 2 3 4 5 6 7 8 9 10 11 ; 设置测量参数 measure porosity weight ; 添加应力测量 measure stress ; 添加速度测量 measure velocity ; 添加孔隙率测量 measure porosity 10. 历史记录命令 10.1 创建历史记录 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ; 记录计算步数 history interval 10 ; 记录不平衡力 history delete history delete history number 1 history unbalanced force ; 记录平均速度 history number 2 history average velocity ; 记录动能 history number 3 history kinetic energy ; 记录势能 history number 4 history potential energy 10.2 绘制历史曲线 1 2 3 ; 绘制历史记录 plot history 1 vs history 2 plot history 1 vs time 11. 高级功能命令 11.1 平行计算 1 2 3 4 5 ; 设置并行计算 set process 4 ; 显示处理器数量 print processors 11.2 容差设置 1 2 3 4 5 ; 设置接触容差 set contact tolerance 1e-6 ; 设置搜索容差 set search tolerance 1e-6 11.3 内存管理 1 2 3 4 5 ; 显示内存使用 print memory ; 清理未使用的对象 free memory 12. 批处理命令 12.1 加载批处理文件 1 2 3 4 5 ; 执行命令文件 call &#39;commands.txt&#39; ; 执行FISH文件 fish load &#39;script.fis&#39; 12.2 循环求解 1 2 3 4 5 6 ; 循环求解不同工况 loop while (condition) solve &#39;time 100.0&#39; save case_@i i = i + 1 endloop 13. 错误诊断命令 13.1 检查模型 1 2 3 4 5 ; 检查模型一致性 model check ; 显示错误信息 model verify 13.2 调试命令 1 2 3 4 5 6 7 8 ; 显示接触列表 contact list ; 检查重叠 ball check overlap ; 显示力链 contact force plot 14. 常用组合命令示例 14.1 简单加载示例 1 2 3 4 5 new project load &#39;myproject.p2prj&#39; solve plot ball plot export &#39;result.png&#39; 14.2 创建颗粒填充示例 1 2 3 4 5 6 7 8 new ball distribute hex radius 0.1 0.2 number 1000 ... box -5 5 -5 5 ball density 2650 ball young 50e9 ball friction 0.5 set gravity 0 0 -9.81 solve 14.3 三轴压缩试验示例 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 创建试样 ball generate radius 0.2 number 1000 ... box 0 5 0 5 0 10 ; 施加围压 apply stress -10e6 0 0 0 0 0 range box 0 5 0 5 0 10 ; 固结 solve time 1000 ; 偏心加载 apply velocity 0 0 -0.01 range box 0 5 0 5 0 2 solve time 1000 15. 注意事项 命令格式：PFC命令以分号结尾 注释：使用分号表示注释开始 大小写：PFC命令不区分大小写 坐标系统：默认Z轴向上（3D），2D模型在XY平面 单位系统：注意保持单位一致性 文件路径：使用单引号包围文件路径 范围选择：使用range关键字指定作用范围 版本：PFC 5.0 最后更新：2025-10-28\n">
 <title>PFC学习记录</title>
 
 <link rel='canonical' href='https://anjoy0723.github.io/p/pfc%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/'>
 
 <link rel="stylesheet" href="/scss/style.min.9b883890c9d371690cb2f3aee9c265f4a8f65425d4e83b5c4868ac58e3b5edc0.css"><meta property='og:title' content="PFC学习记录">
-<meta property='og:description' content="DAY 1 今天开始正式学习PFC软件，浅浅记录一下，看得头疼。。\n">
+<meta property='og:description' content="PFC 5.0 常用命令行指令手册 1. 项目文件操作 1.1 文件加载 1 2 3 4 5 6 7 8 ; 加载项目文件 project load &#39;filename.p2prj&#39; ; 加载数据文件 restore &#39;filename.p2dat&#39; ; 加载保存文件 restore &#39;filename.p2sav&#39; 1.2 文件保存 1 2 3 4 5 6 7 8 ; 保存数据文件 save &#39;filename.p2dat&#39; ; 保存项目文件（会自动保存为.p2prj格式） project save &#39;filename&#39; ; 保存所有数据 save 2. 计算控制命令 2.1 计算初始化 1 2 3 4 5 ; 初始化计算 new ; 清空所有对象 reset 2.2 求解控制 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 设置求解步数 solve &#39;time 1000.0&#39; ; 设置收敛标准 solve accuracy 0.001 ; 求解直到收敛 solve ; 暂停计算 pause ; 继续计算 continue ; 停止求解 stop 2.3 步长控制 1 2 3 4 5 6 7 8 9 10 11 ; 设置时间步长 set dt 0.1 ; 自动调整时间步长 set auto on ; 设置最大步长 set dt max 1.0 ; 设置最小步长 set dt min 0.001 3. 对象创建命令 3.1 颗粒创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 创建圆形颗粒 ball create id 1 position 0 0 radius 0.5 ; 创建多个随机颗粒 ball create radius 0.1 0.2 number 100 ... position -5 5 -5 5 ; 创建规则排列的颗粒 ball distribute hex packed ... radius 0.5 0.6 ... number 1000 ... box -10 10 -10 10 -10 10 ; 生成颗粒并填充区域 ball generate radius 0.5 ... number 1000 ... box -10 10 -10 10 -10 10 3.2 墙创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 创建平面墙 wall create plane position 0 0 0 normal 0 1 0 ; 创建线段墙（2D） wall create line position -10 0 10 0 ; 创建立方体墙 wall create box -10 10 -10 10 -10 10 ; 创建圆柱墙 wall create cylinder axis z ... base -5 -5 0 ... top -5 -5 10 ... radius 5 3.3 块体创建 1 2 3 4 5 6 7 8 ; 创建一个块体 block create brick 0 10 0 10 0 10 ; 创建规则块体阵列 block distribute hex packed ... size 1 1 1 ... number 10 10 5 ... box 0 10 0 10 0 5 4. 材料属性设置 4.1 接触模型设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 设置线接触模型 contact model linear ; 设置赫兹接触模型 contact model hertz ; 设置接触黏结模型 contact model contactbond ; 设置平行黏结模型 contact model parallelbond ; 设置摩擦接触模型 contact model friction 4.2 颗粒属性设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ; 设置密度 ball density 2650 ; 设置弹性模量 ball young 50e9 ; 设置泊松比 ball poisson 0.25 ; 设置摩擦系数 ball friction 0.5 ; 设置接触强度 ball contact stiffness shear 1e8 ball contact stiffness normal 1e8 4.3 墙属性设置 1 2 3 4 5 6 7 8 ; 设置墙摩擦系数 wall friction 0.6 ; 设置墙弹性模量 wall young 50e9 ; 设置墙泊松比 wall poisson 0.2 5. 边界条件设置 5.1 重力设置 1 2 3 4 5 ; 设置重力加速度 set gravity 0 0 -9.81 ; 关闭重力 set gravity 0 0 0 5.2 速度/位移边界 1 2 3 4 5 6 7 8 ; 设置颗粒速度 ball velocity 1 0 0 range id 1 100 ; 设置墙速度 wall velocity 0.01 0 0 range id 1 ; 固定边界（零速度） ball velocity 0 0 0 range position-y 10 11 5.3 应力/力边界 1 2 3 4 5 ; 施加均匀应力 apply stress 1000 0 0 0 0 0 range box -5 5 -5 5 -5 5 ; 施加集中力 apply force 100 0 0 range id 1 6. 状态查询命令 6.1 系统信息 1 2 3 4 5 6 7 8 ; 显示系统信息 info ; 显示FISH变量列表 list fish ; 显示材料模型列表 list contact model 6.2 统计信息 1 2 3 4 5 6 7 8 9 10 11 ; 显示计算状态 print STEP print TIME ; 显示力链信息 print contacts active print contacts total ; 显示颗粒统计 print balls active print balls total 6.3 变量监控 1 2 3 4 5 6 7 8 9 10 11 ; 监控不平衡力 plot不平衡力 history ; 监控动能 plot KE history ; 监控势能 plot PE history ; 监控平均应力 plot平均应力 history 7. 图形显示命令 7.1 基本绘图 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 显示所有颗粒 plot ball ; 显示所有墙 plot wall ; 显示接触 plot contact ; 显示力链 plot contact force ; 显示速度矢量 plot ball velocity 7.2 绘图选项 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 设置颜色映射 plot add colorby vel-mag ; 设置显示范围 plot set xaxis -10 10 plot set yaxis -10 10 plot set zaxis -10 10 ; 保存图片 plot export &#39;filename.png&#39; width 1200 height 800 ; 显示网格 plot set grid on 7.3 切片显示 1 2 3 4 5 ; 创建切片 plot add slice origin 0 0 0 normal 1 0 0 ; 切片显示应力 plot add slice colorby szz 8. FISH语言命令 8.1 FISH变量 1 2 3 4 5 6 7 ; 定义FISH变量 fish define myvariable myvariable = 10.5 end ; 运行FISH函数 fish run myfunction 8.2 循环结构 1 2 3 4 5 6 7 8 9 ; FISH循环 loop while (step &lt; 1000) ; 循环体 endloop ; FISH计数循环 loop for (i = 1 to 100) ; 循环体 endloop 8.3 条件判断 1 2 3 4 5 6 ; 条件语句 if (condition) then ; 执行语句 else ; 替代语句 endif 9. 测量命令 9.1 创建测量圆 1 2 3 4 5 ; 创建测量圆（2D） measure create position 0 0 radius 5 ; 创建测量球（3D） measure create position 0 0 0 radius 5 9.2 测量参数 1 2 3 4 5 6 7 8 9 10 11 ; 设置测量参数 measure porosity weight ; 添加应力测量 measure stress ; 添加速度测量 measure velocity ; 添加孔隙率测量 measure porosity 10. 历史记录命令 10.1 创建历史记录 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ; 记录计算步数 history interval 10 ; 记录不平衡力 history delete history delete history number 1 history unbalanced force ; 记录平均速度 history number 2 history average velocity ; 记录动能 history number 3 history kinetic energy ; 记录势能 history number 4 history potential energy 10.2 绘制历史曲线 1 2 3 ; 绘制历史记录 plot history 1 vs history 2 plot history 1 vs time 11. 高级功能命令 11.1 平行计算 1 2 3 4 5 ; 设置并行计算 set process 4 ; 显示处理器数量 print processors 11.2 容差设置 1 2 3 4 5 ; 设置接触容差 set contact tolerance 1e-6 ; 设置搜索容差 set search tolerance 1e-6 11.3 内存管理 1 2 3 4 5 ; 显示内存使用 print memory ; 清理未使用的对象 free memory 12. 批处理命令 12.1 加载批处理文件 1 2 3 4 5 ; 执行命令文件 call &#39;commands.txt&#39; ; 执行FISH文件 fish load &#39;script.fis&#39; 12.2 循环求解 1 2 3 4 5 6 ; 循环求解不同工况 loop while (condition) solve &#39;time 100.0&#39; save case_@i i = i + 1 endloop 13. 错误诊断命令 13.1 检查模型 1 2 3 4 5 ; 检查模型一致性 model check ; 显示错误信息 model verify 13.2 调试命令 1 2 3 4 5 6 7 8 ; 显示接触列表 contact list ; 检查重叠 ball check overlap ; 显示力链 contact force plot 14. 常用组合命令示例 14.1 简单加载示例 1 2 3 4 5 new project load &#39;myproject.p2prj&#39; solve plot ball plot export &#39;result.png&#39; 14.2 创建颗粒填充示例 1 2 3 4 5 6 7 8 new ball distribute hex radius 0.1 0.2 number 1000 ... box -5 5 -5 5 ball density 2650 ball young 50e9 ball friction 0.5 set gravity 0 0 -9.81 solve 14.3 三轴压缩试验示例 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 创建试样 ball generate radius 0.2 number 1000 ... box 0 5 0 5 0 10 ; 施加围压 apply stress -10e6 0 0 0 0 0 range box 0 5 0 5 0 10 ; 固结 solve time 1000 ; 偏心加载 apply velocity 0 0 -0.01 range box 0 5 0 5 0 2 solve time 1000 15. 注意事项 命令格式：PFC命令以分号结尾 注释：使用分号表示注释开始 大小写：PFC命令不区分大小写 坐标系统：默认Z轴向上（3D），2D模型在XY平面 单位系统：注意保持单位一致性 文件路径：使用单引号包围文件路径 范围选择：使用range关键字指定作用范围 版本：PFC 5.0 最后更新：2025-10-28\n">
 <meta property='og:url' content='https://anjoy0723.github.io/p/pfc%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/'>
 <meta property='og:site_name' content='AnJoy&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='教程' /><meta property='article:tag' content='PFC' /><meta property='article:published_time' content='2025-10-27T16:46:25&#43;08:00'/><meta property='article:modified_time' content='2025-10-27T08:58:02&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='教程' /><meta property='article:tag' content='PFC' /><meta property='article:published_time' content='2025-10-27T16:46:25&#43;08:00'/><meta property='article:modified_time' content='2025-10-29T07:27:07&#43;00:00'/>
 <meta name="twitter:title" content="PFC学习记录">
-<meta name="twitter:description" content="DAY 1 今天开始正式学习PFC软件，浅浅记录一下，看得头疼。。\n">
+<meta name="twitter:description" content="PFC 5.0 常用命令行指令手册 1. 项目文件操作 1.1 文件加载 1 2 3 4 5 6 7 8 ; 加载项目文件 project load &#39;filename.p2prj&#39; ; 加载数据文件 restore &#39;filename.p2dat&#39; ; 加载保存文件 restore &#39;filename.p2sav&#39; 1.2 文件保存 1 2 3 4 5 6 7 8 ; 保存数据文件 save &#39;filename.p2dat&#39; ; 保存项目文件（会自动保存为.p2prj格式） project save &#39;filename&#39; ; 保存所有数据 save 2. 计算控制命令 2.1 计算初始化 1 2 3 4 5 ; 初始化计算 new ; 清空所有对象 reset 2.2 求解控制 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 设置求解步数 solve &#39;time 1000.0&#39; ; 设置收敛标准 solve accuracy 0.001 ; 求解直到收敛 solve ; 暂停计算 pause ; 继续计算 continue ; 停止求解 stop 2.3 步长控制 1 2 3 4 5 6 7 8 9 10 11 ; 设置时间步长 set dt 0.1 ; 自动调整时间步长 set auto on ; 设置最大步长 set dt max 1.0 ; 设置最小步长 set dt min 0.001 3. 对象创建命令 3.1 颗粒创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ; 创建圆形颗粒 ball create id 1 position 0 0 radius 0.5 ; 创建多个随机颗粒 ball create radius 0.1 0.2 number 100 ... position -5 5 -5 5 ; 创建规则排列的颗粒 ball distribute hex packed ... radius 0.5 0.6 ... number 1000 ... box -10 10 -10 10 -10 10 ; 生成颗粒并填充区域 ball generate radius 0.5 ... number 1000 ... box -10 10 -10 10 -10 10 3.2 墙创建 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 创建平面墙 wall create plane position 0 0 0 normal 0 1 0 ; 创建线段墙（2D） wall create line position -10 0 10 0 ; 创建立方体墙 wall create box -10 10 -10 10 -10 10 ; 创建圆柱墙 wall create cylinder axis z ... base -5 -5 0 ... top -5 -5 10 ... radius 5 3.3 块体创建 1 2 3 4 5 6 7 8 ; 创建一个块体 block create brick 0 10 0 10 0 10 ; 创建规则块体阵列 block distribute hex packed ... size 1 1 1 ... number 10 10 5 ... box 0 10 0 10 0 5 4. 材料属性设置 4.1 接触模型设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 设置线接触模型 contact model linear ; 设置赫兹接触模型 contact model hertz ; 设置接触黏结模型 contact model contactbond ; 设置平行黏结模型 contact model parallelbond ; 设置摩擦接触模型 contact model friction 4.2 颗粒属性设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ; 设置密度 ball density 2650 ; 设置弹性模量 ball young 50e9 ; 设置泊松比 ball poisson 0.25 ; 设置摩擦系数 ball friction 0.5 ; 设置接触强度 ball contact stiffness shear 1e8 ball contact stiffness normal 1e8 4.3 墙属性设置 1 2 3 4 5 6 7 8 ; 设置墙摩擦系数 wall friction 0.6 ; 设置墙弹性模量 wall young 50e9 ; 设置墙泊松比 wall poisson 0.2 5. 边界条件设置 5.1 重力设置 1 2 3 4 5 ; 设置重力加速度 set gravity 0 0 -9.81 ; 关闭重力 set gravity 0 0 0 5.2 速度/位移边界 1 2 3 4 5 6 7 8 ; 设置颗粒速度 ball velocity 1 0 0 range id 1 100 ; 设置墙速度 wall velocity 0.01 0 0 range id 1 ; 固定边界（零速度） ball velocity 0 0 0 range position-y 10 11 5.3 应力/力边界 1 2 3 4 5 ; 施加均匀应力 apply stress 1000 0 0 0 0 0 range box -5 5 -5 5 -5 5 ; 施加集中力 apply force 100 0 0 range id 1 6. 状态查询命令 6.1 系统信息 1 2 3 4 5 6 7 8 ; 显示系统信息 info ; 显示FISH变量列表 list fish ; 显示材料模型列表 list contact model 6.2 统计信息 1 2 3 4 5 6 7 8 9 10 11 ; 显示计算状态 print STEP print TIME ; 显示力链信息 print contacts active print contacts total ; 显示颗粒统计 print balls active print balls total 6.3 变量监控 1 2 3 4 5 6 7 8 9 10 11 ; 监控不平衡力 plot不平衡力 history ; 监控动能 plot KE history ; 监控势能 plot PE history ; 监控平均应力 plot平均应力 history 7. 图形显示命令 7.1 基本绘图 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ; 显示所有颗粒 plot ball ; 显示所有墙 plot wall ; 显示接触 plot contact ; 显示力链 plot contact force ; 显示速度矢量 plot ball velocity 7.2 绘图选项 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 设置颜色映射 plot add colorby vel-mag ; 设置显示范围 plot set xaxis -10 10 plot set yaxis -10 10 plot set zaxis -10 10 ; 保存图片 plot export &#39;filename.png&#39; width 1200 height 800 ; 显示网格 plot set grid on 7.3 切片显示 1 2 3 4 5 ; 创建切片 plot add slice origin 0 0 0 normal 1 0 0 ; 切片显示应力 plot add slice colorby szz 8. FISH语言命令 8.1 FISH变量 1 2 3 4 5 6 7 ; 定义FISH变量 fish define myvariable myvariable = 10.5 end ; 运行FISH函数 fish run myfunction 8.2 循环结构 1 2 3 4 5 6 7 8 9 ; FISH循环 loop while (step &lt; 1000) ; 循环体 endloop ; FISH计数循环 loop for (i = 1 to 100) ; 循环体 endloop 8.3 条件判断 1 2 3 4 5 6 ; 条件语句 if (condition) then ; 执行语句 else ; 替代语句 endif 9. 测量命令 9.1 创建测量圆 1 2 3 4 5 ; 创建测量圆（2D） measure create position 0 0 radius 5 ; 创建测量球（3D） measure create position 0 0 0 radius 5 9.2 测量参数 1 2 3 4 5 6 7 8 9 10 11 ; 设置测量参数 measure porosity weight ; 添加应力测量 measure stress ; 添加速度测量 measure velocity ; 添加孔隙率测量 measure porosity 10. 历史记录命令 10.1 创建历史记录 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ; 记录计算步数 history interval 10 ; 记录不平衡力 history delete history delete history number 1 history unbalanced force ; 记录平均速度 history number 2 history average velocity ; 记录动能 history number 3 history kinetic energy ; 记录势能 history number 4 history potential energy 10.2 绘制历史曲线 1 2 3 ; 绘制历史记录 plot history 1 vs history 2 plot history 1 vs time 11. 高级功能命令 11.1 平行计算 1 2 3 4 5 ; 设置并行计算 set process 4 ; 显示处理器数量 print processors 11.2 容差设置 1 2 3 4 5 ; 设置接触容差 set contact tolerance 1e-6 ; 设置搜索容差 set search tolerance 1e-6 11.3 内存管理 1 2 3 4 5 ; 显示内存使用 print memory ; 清理未使用的对象 free memory 12. 批处理命令 12.1 加载批处理文件 1 2 3 4 5 ; 执行命令文件 call &#39;commands.txt&#39; ; 执行FISH文件 fish load &#39;script.fis&#39; 12.2 循环求解 1 2 3 4 5 6 ; 循环求解不同工况 loop while (condition) solve &#39;time 100.0&#39; save case_@i i = i + 1 endloop 13. 错误诊断命令 13.1 检查模型 1 2 3 4 5 ; 检查模型一致性 model check ; 显示错误信息 model verify 13.2 调试命令 1 2 3 4 5 6 7 8 ; 显示接触列表 contact list ; 检查重叠 ball check overlap ; 显示力链 contact force plot 14. 常用组合命令示例 14.1 简单加载示例 1 2 3 4 5 new project load &#39;myproject.p2prj&#39; solve plot ball plot export &#39;result.png&#39; 14.2 创建颗粒填充示例 1 2 3 4 5 6 7 8 new ball distribute hex radius 0.1 0.2 number 1000 ... box -5 5 -5 5 ball density 2650 ball young 50e9 ball friction 0.5 set gravity 0 0 -9.81 solve 14.3 三轴压缩试验示例 1 2 3 4 5 6 7 8 9 10 11 12 13 ; 创建试样 ball generate radius 0.2 number 1000 ... box 0 5 0 5 0 10 ; 施加围压 apply stress -10e6 0 0 0 0 0 range box 0 5 0 5 0 10 ; 固结 solve time 1000 ; 偏心加载 apply velocity 0 0 -0.01 range box 0 5 0 5 0 2 solve time 1000 15. 注意事项 命令格式：PFC命令以分号结尾 注释：使用分号表示注释开始 大小写：PFC命令不区分大小写 坐标系统：默认Z轴向上（3D），2D模型在XY平面 单位系统：注意保持单位一致性 文件路径：使用单引号包围文件路径 范围选择：使用range关键字指定作用范围 版本：PFC 5.0 最后更新：2025-10-28\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -241,7 +241,131 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-项目文件操作">1. 项目文件操作</a>
+      <ol>
+        <li><a href="#11-文件加载">1.1 文件加载</a></li>
+        <li><a href="#12-文件保存">1.2 文件保存</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-计算控制命令">2. 计算控制命令</a>
+      <ol>
+        <li><a href="#21-计算初始化">2.1 计算初始化</a></li>
+        <li><a href="#22-求解控制">2.2 求解控制</a></li>
+        <li><a href="#23-步长控制">2.3 步长控制</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-对象创建命令">3. 对象创建命令</a>
+      <ol>
+        <li><a href="#31-颗粒创建">3.1 颗粒创建</a></li>
+        <li><a href="#32-墙创建">3.2 墙创建</a></li>
+        <li><a href="#33-块体创建">3.3 块体创建</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-材料属性设置">4. 材料属性设置</a>
+      <ol>
+        <li><a href="#41-接触模型设置">4.1 接触模型设置</a></li>
+        <li><a href="#42-颗粒属性设置">4.2 颗粒属性设置</a></li>
+        <li><a href="#43-墙属性设置">4.3 墙属性设置</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-边界条件设置">5. 边界条件设置</a>
+      <ol>
+        <li><a href="#51-重力设置">5.1 重力设置</a></li>
+        <li><a href="#52-速度位移边界">5.2 速度/位移边界</a></li>
+        <li><a href="#53-应力力边界">5.3 应力/力边界</a></li>
+      </ol>
+    </li>
+    <li><a href="#6-状态查询命令">6. 状态查询命令</a>
+      <ol>
+        <li><a href="#61-系统信息">6.1 系统信息</a></li>
+        <li><a href="#62-统计信息">6.2 统计信息</a></li>
+        <li><a href="#63-变量监控">6.3 变量监控</a></li>
+      </ol>
+    </li>
+    <li><a href="#7-图形显示命令">7. 图形显示命令</a>
+      <ol>
+        <li><a href="#71-基本绘图">7.1 基本绘图</a></li>
+        <li><a href="#72-绘图选项">7.2 绘图选项</a></li>
+        <li><a href="#73-切片显示">7.3 切片显示</a></li>
+      </ol>
+    </li>
+    <li><a href="#8-fish语言命令">8. FISH语言命令</a>
+      <ol>
+        <li><a href="#81-fish变量">8.1 FISH变量</a></li>
+        <li><a href="#82-循环结构">8.2 循环结构</a></li>
+        <li><a href="#83-条件判断">8.3 条件判断</a></li>
+      </ol>
+    </li>
+    <li><a href="#9-测量命令">9. 测量命令</a>
+      <ol>
+        <li><a href="#91-创建测量圆">9.1 创建测量圆</a></li>
+        <li><a href="#92-测量参数">9.2 测量参数</a></li>
+      </ol>
+    </li>
+    <li><a href="#10-历史记录命令">10. 历史记录命令</a>
+      <ol>
+        <li><a href="#101-创建历史记录">10.1 创建历史记录</a></li>
+        <li><a href="#102-绘制历史曲线">10.2 绘制历史曲线</a></li>
+      </ol>
+    </li>
+    <li><a href="#11-高级功能命令">11. 高级功能命令</a>
+      <ol>
+        <li><a href="#111-平行计算">11.1 平行计算</a></li>
+        <li><a href="#112-容差设置">11.2 容差设置</a></li>
+        <li><a href="#113-内存管理">11.3 内存管理</a></li>
+      </ol>
+    </li>
+    <li><a href="#12-批处理命令">12. 批处理命令</a>
+      <ol>
+        <li><a href="#121-加载批处理文件">12.1 加载批处理文件</a></li>
+        <li><a href="#122-循环求解">12.2 循环求解</a></li>
+      </ol>
+    </li>
+    <li><a href="#13-错误诊断命令">13. 错误诊断命令</a>
+      <ol>
+        <li><a href="#131-检查模型">13.1 检查模型</a></li>
+        <li><a href="#132-调试命令">13.2 调试命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#14-常用组合命令示例">14. 常用组合命令示例</a>
+      <ol>
+        <li><a href="#141-简单加载示例">14.1 简单加载示例</a></li>
+        <li><a href="#142-创建颗粒填充示例">14.2 创建颗粒填充示例</a></li>
+        <li><a href="#143-三轴压缩试验示例">14.3 三轴压缩试验示例</a></li>
+      </ol>
+    </li>
+    <li><a href="#15-注意事项">15. 注意事项</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -297,7 +421,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -320,8 +444,969 @@
     <section class="article-content">
     
     
-    <h2 id="day-1">DAY 1
-</h2><p>今天开始正式学习PFC软件，浅浅记录一下，看得头疼。。</p>
+    <h1 id="pfc-50-常用命令行指令手册">PFC 5.0 常用命令行指令手册
+</h1><h2 id="1-项目文件操作">1. 项目文件操作
+</h2><h3 id="11-文件加载">1.1 文件加载
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 加载项目文件
+</span></span><span class="line"><span class="cl">project load <span class="s1">&#39;filename.p2prj&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 加载数据文件
+</span></span><span class="line"><span class="cl">restore <span class="s1">&#39;filename.p2dat&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 加载保存文件
+</span></span><span class="line"><span class="cl">restore <span class="s1">&#39;filename.p2sav&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-文件保存">1.2 文件保存
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 保存数据文件
+</span></span><span class="line"><span class="cl">save <span class="s1">&#39;filename.p2dat&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 保存项目文件（会自动保存为.p2prj格式）
+</span></span><span class="line"><span class="cl">project save <span class="s1">&#39;filename&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 保存所有数据
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="2-计算控制命令">2. 计算控制命令
+</h2><h3 id="21-计算初始化">2.1 计算初始化
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 初始化计算
+</span></span><span class="line"><span class="cl">new
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 清空所有对象
+</span></span><span class="line"><span class="cl">reset
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-求解控制">2.2 求解控制
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置求解步数
+</span></span><span class="line"><span class="cl">solve <span class="s1">&#39;time 1000.0&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置收敛标准
+</span></span><span class="line"><span class="cl">solve accuracy 0.001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 求解直到收敛
+</span></span><span class="line"><span class="cl">solve
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 暂停计算
+</span></span><span class="line"><span class="cl">pause
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 继续计算
+</span></span><span class="line"><span class="cl"><span class="k">continue</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 停止求解
+</span></span><span class="line"><span class="cl">stop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="23-步长控制">2.3 步长控制
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置时间步长
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> dt 0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 自动调整时间步长
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> auto on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置最大步长
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> dt max 1.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置最小步长
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> dt min 0.001
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="3-对象创建命令">3. 对象创建命令
+</h2><h3 id="31-颗粒创建">3.1 颗粒创建
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建圆形颗粒
+</span></span><span class="line"><span class="cl">ball create id <span class="m">1</span> position <span class="m">0</span> <span class="m">0</span> radius 0.5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建多个随机颗粒
+</span></span><span class="line"><span class="cl">ball create radius 0.1 0.2 number <span class="m">100</span> ...
+</span></span><span class="line"><span class="cl">           position -5 <span class="m">5</span> -5 <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建规则排列的颗粒
+</span></span><span class="line"><span class="cl">ball distribute hex packed ...
+</span></span><span class="line"><span class="cl">           radius 0.5 0.6 ...
+</span></span><span class="line"><span class="cl">           number <span class="m">1000</span> ...
+</span></span><span class="line"><span class="cl">           box -10 <span class="m">10</span> -10 <span class="m">10</span> -10 <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 生成颗粒并填充区域
+</span></span><span class="line"><span class="cl">ball generate radius 0.5 ...
+</span></span><span class="line"><span class="cl">            number <span class="m">1000</span> ...
+</span></span><span class="line"><span class="cl">            box -10 <span class="m">10</span> -10 <span class="m">10</span> -10 <span class="m">10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-墙创建">3.2 墙创建
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建平面墙
+</span></span><span class="line"><span class="cl">wall create plane position <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> normal <span class="m">0</span> <span class="m">1</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建线段墙（2D）
+</span></span><span class="line"><span class="cl">wall create line position -10 <span class="m">0</span> <span class="m">10</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建立方体墙
+</span></span><span class="line"><span class="cl">wall create box -10 <span class="m">10</span> -10 <span class="m">10</span> -10 <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建圆柱墙
+</span></span><span class="line"><span class="cl">wall create cylinder axis z ...
+</span></span><span class="line"><span class="cl">               base -5 -5 <span class="m">0</span> ...
+</span></span><span class="line"><span class="cl">               top -5 -5 <span class="m">10</span> ...
+</span></span><span class="line"><span class="cl">               radius <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-块体创建">3.3 块体创建
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建一个块体
+</span></span><span class="line"><span class="cl">block create brick <span class="m">0</span> <span class="m">10</span> <span class="m">0</span> <span class="m">10</span> <span class="m">0</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建规则块体阵列
+</span></span><span class="line"><span class="cl">block distribute hex packed ...
+</span></span><span class="line"><span class="cl">           size <span class="m">1</span> <span class="m">1</span> <span class="m">1</span> ...
+</span></span><span class="line"><span class="cl">           number <span class="m">10</span> <span class="m">10</span> <span class="m">5</span> ...
+</span></span><span class="line"><span class="cl">           box <span class="m">0</span> <span class="m">10</span> <span class="m">0</span> <span class="m">10</span> <span class="m">0</span> <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="4-材料属性设置">4. 材料属性设置
+</h2><h3 id="41-接触模型设置">4.1 接触模型设置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置线接触模型
+</span></span><span class="line"><span class="cl">contact model linear
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置赫兹接触模型
+</span></span><span class="line"><span class="cl">contact model hertz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置接触黏结模型
+</span></span><span class="line"><span class="cl">contact model contactbond
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置平行黏结模型
+</span></span><span class="line"><span class="cl">contact model parallelbond
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置摩擦接触模型
+</span></span><span class="line"><span class="cl">contact model friction
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="42-颗粒属性设置">4.2 颗粒属性设置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置密度
+</span></span><span class="line"><span class="cl">ball density <span class="m">2650</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置弹性模量
+</span></span><span class="line"><span class="cl">ball young 50e9
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置泊松比
+</span></span><span class="line"><span class="cl">ball poisson 0.25
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置摩擦系数
+</span></span><span class="line"><span class="cl">ball friction 0.5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置接触强度
+</span></span><span class="line"><span class="cl">ball contact stiffness shear 1e8
+</span></span><span class="line"><span class="cl">ball contact stiffness normal 1e8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-墙属性设置">4.3 墙属性设置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置墙摩擦系数
+</span></span><span class="line"><span class="cl">wall friction 0.6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置墙弹性模量
+</span></span><span class="line"><span class="cl">wall young 50e9
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置墙泊松比
+</span></span><span class="line"><span class="cl">wall poisson 0.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-边界条件设置">5. 边界条件设置
+</h2><h3 id="51-重力设置">5.1 重力设置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置重力加速度
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> gravity <span class="m">0</span> <span class="m">0</span> -9.81
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 关闭重力
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> gravity <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-速度位移边界">5.2 速度/位移边界
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置颗粒速度
+</span></span><span class="line"><span class="cl">ball velocity <span class="m">1</span> <span class="m">0</span> <span class="m">0</span> range id <span class="m">1</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置墙速度
+</span></span><span class="line"><span class="cl">wall velocity 0.01 <span class="m">0</span> <span class="m">0</span> range id <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 固定边界（零速度）
+</span></span><span class="line"><span class="cl">ball velocity <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> range position-y <span class="m">10</span> <span class="m">11</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="53-应力力边界">5.3 应力/力边界
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 施加均匀应力
+</span></span><span class="line"><span class="cl">apply stress <span class="m">1000</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> range box -5 <span class="m">5</span> -5 <span class="m">5</span> -5 <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 施加集中力
+</span></span><span class="line"><span class="cl">apply force <span class="m">100</span> <span class="m">0</span> <span class="m">0</span> range id <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="6-状态查询命令">6. 状态查询命令
+</h2><h3 id="61-系统信息">6.1 系统信息
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 显示系统信息
+</span></span><span class="line"><span class="cl">info
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示FISH变量列表
+</span></span><span class="line"><span class="cl">list fish
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示材料模型列表
+</span></span><span class="line"><span class="cl">list contact model
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="62-统计信息">6.2 统计信息
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 显示计算状态
+</span></span><span class="line"><span class="cl">print STEP
+</span></span><span class="line"><span class="cl">print TIME
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示力链信息
+</span></span><span class="line"><span class="cl">print contacts active
+</span></span><span class="line"><span class="cl">print contacts total
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示颗粒统计
+</span></span><span class="line"><span class="cl">print balls active
+</span></span><span class="line"><span class="cl">print balls total
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="63-变量监控">6.3 变量监控
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 监控不平衡力
+</span></span><span class="line"><span class="cl">plot不平衡力 <span class="nb">history</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 监控动能
+</span></span><span class="line"><span class="cl">plot KE <span class="nb">history</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 监控势能
+</span></span><span class="line"><span class="cl">plot PE <span class="nb">history</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 监控平均应力
+</span></span><span class="line"><span class="cl">plot平均应力 <span class="nb">history</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="7-图形显示命令">7. 图形显示命令
+</h2><h3 id="71-基本绘图">7.1 基本绘图
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 显示所有颗粒
+</span></span><span class="line"><span class="cl">plot ball
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示所有墙
+</span></span><span class="line"><span class="cl">plot wall
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示接触
+</span></span><span class="line"><span class="cl">plot contact
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示力链
+</span></span><span class="line"><span class="cl">plot contact force
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示速度矢量
+</span></span><span class="line"><span class="cl">plot ball velocity
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="72-绘图选项">7.2 绘图选项
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置颜色映射
+</span></span><span class="line"><span class="cl">plot add colorby vel-mag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置显示范围
+</span></span><span class="line"><span class="cl">plot <span class="nb">set</span> xaxis -10 <span class="m">10</span>
+</span></span><span class="line"><span class="cl">plot <span class="nb">set</span> yaxis -10 <span class="m">10</span>
+</span></span><span class="line"><span class="cl">plot <span class="nb">set</span> zaxis -10 <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 保存图片
+</span></span><span class="line"><span class="cl">plot <span class="nb">export</span> <span class="s1">&#39;filename.png&#39;</span> width <span class="m">1200</span> height <span class="m">800</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示网格
+</span></span><span class="line"><span class="cl">plot <span class="nb">set</span> grid on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="73-切片显示">7.3 切片显示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建切片
+</span></span><span class="line"><span class="cl">plot add slice origin <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> normal <span class="m">1</span> <span class="m">0</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 切片显示应力
+</span></span><span class="line"><span class="cl">plot add slice colorby szz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="8-fish语言命令">8. FISH语言命令
+</h2><h3 id="81-fish变量">8.1 FISH变量
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 定义FISH变量
+</span></span><span class="line"><span class="cl">fish define myvariable
+</span></span><span class="line"><span class="cl">  <span class="nv">myvariable</span> <span class="o">=</span> 10.5
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 运行FISH函数
+</span></span><span class="line"><span class="cl">fish run myfunction
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="82-循环结构">8.2 循环结构
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> FISH循环
+</span></span><span class="line"><span class="cl">loop <span class="k">while</span> <span class="o">(</span>step &lt; 1000<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">;</span> 循环体
+</span></span><span class="line"><span class="cl">endloop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> FISH计数循环
+</span></span><span class="line"><span class="cl">loop <span class="k">for</span> <span class="o">(</span><span class="nv">i</span> <span class="o">=</span> <span class="m">1</span> to 100<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">;</span> 循环体
+</span></span><span class="line"><span class="cl">endloop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="83-条件判断">8.3 条件判断
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 条件语句
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span>condition<span class="o">)</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="p">;</span> 执行语句
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="p">;</span> 替代语句
+</span></span><span class="line"><span class="cl">endif
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="9-测量命令">9. 测量命令
+</h2><h3 id="91-创建测量圆">9.1 创建测量圆
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建测量圆（2D）
+</span></span><span class="line"><span class="cl">measure create position <span class="m">0</span> <span class="m">0</span> radius <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 创建测量球（3D）
+</span></span><span class="line"><span class="cl">measure create position <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> radius <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="92-测量参数">9.2 测量参数
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置测量参数
+</span></span><span class="line"><span class="cl">measure porosity weight
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 添加应力测量
+</span></span><span class="line"><span class="cl">measure stress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 添加速度测量
+</span></span><span class="line"><span class="cl">measure velocity
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 添加孔隙率测量
+</span></span><span class="line"><span class="cl">measure porosity
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="10-历史记录命令">10. 历史记录命令
+</h2><h3 id="101-创建历史记录">10.1 创建历史记录
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 记录计算步数
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> interval <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 记录不平衡力
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> delete
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> delete
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> number <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> unbalanced force
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 记录平均速度
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> number <span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> average velocity
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 记录动能
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> number <span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> kinetic energy
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 记录势能
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> number <span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="nb">history</span> potential energy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="102-绘制历史曲线">10.2 绘制历史曲线
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 绘制历史记录
+</span></span><span class="line"><span class="cl">plot <span class="nb">history</span> <span class="m">1</span> vs <span class="nb">history</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl">plot <span class="nb">history</span> <span class="m">1</span> vs <span class="nb">time</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="11-高级功能命令">11. 高级功能命令
+</h2><h3 id="111-平行计算">11.1 平行计算
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置并行计算
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> process <span class="m">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示处理器数量
+</span></span><span class="line"><span class="cl">print processors
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="112-容差设置">11.2 容差设置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 设置接触容差
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> contact tolerance 1e-6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 设置搜索容差
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> search tolerance 1e-6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="113-内存管理">11.3 内存管理
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 显示内存使用
+</span></span><span class="line"><span class="cl">print memory
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 清理未使用的对象
+</span></span><span class="line"><span class="cl">free memory
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="12-批处理命令">12. 批处理命令
+</h2><h3 id="121-加载批处理文件">12.1 加载批处理文件
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 执行命令文件
+</span></span><span class="line"><span class="cl">call <span class="s1">&#39;commands.txt&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 执行FISH文件
+</span></span><span class="line"><span class="cl">fish load <span class="s1">&#39;script.fis&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="122-循环求解">12.2 循环求解
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 循环求解不同工况
+</span></span><span class="line"><span class="cl">loop <span class="k">while</span> <span class="o">(</span>condition<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  solve <span class="s1">&#39;time 100.0&#39;</span>
+</span></span><span class="line"><span class="cl">  save case_@i
+</span></span><span class="line"><span class="cl">  <span class="nv">i</span> <span class="o">=</span> i + <span class="m">1</span>
+</span></span><span class="line"><span class="cl">endloop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="13-错误诊断命令">13. 错误诊断命令
+</h2><h3 id="131-检查模型">13.1 检查模型
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 检查模型一致性
+</span></span><span class="line"><span class="cl">model check
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示错误信息
+</span></span><span class="line"><span class="cl">model verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="132-调试命令">13.2 调试命令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 显示接触列表
+</span></span><span class="line"><span class="cl">contact list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 检查重叠
+</span></span><span class="line"><span class="cl">ball check overlap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 显示力链
+</span></span><span class="line"><span class="cl">contact force plot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="14-常用组合命令示例">14. 常用组合命令示例
+</h2><h3 id="141-简单加载示例">14.1 简单加载示例
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">new
+</span></span><span class="line"><span class="cl">project load <span class="s1">&#39;myproject.p2prj&#39;</span>
+</span></span><span class="line"><span class="cl">solve
+</span></span><span class="line"><span class="cl">plot ball
+</span></span><span class="line"><span class="cl">plot <span class="nb">export</span> <span class="s1">&#39;result.png&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="142-创建颗粒填充示例">14.2 创建颗粒填充示例
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">new
+</span></span><span class="line"><span class="cl">ball distribute hex radius 0.1 0.2 number <span class="m">1000</span> ...
+</span></span><span class="line"><span class="cl">           box -5 <span class="m">5</span> -5 <span class="m">5</span>
+</span></span><span class="line"><span class="cl">ball density <span class="m">2650</span>
+</span></span><span class="line"><span class="cl">ball young 50e9
+</span></span><span class="line"><span class="cl">ball friction 0.5
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> gravity <span class="m">0</span> <span class="m">0</span> -9.81
+</span></span><span class="line"><span class="cl">solve
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="143-三轴压缩试验示例">14.3 三轴压缩试验示例
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">;</span> 创建试样
+</span></span><span class="line"><span class="cl">ball generate radius 0.2 number <span class="m">1000</span> ...
+</span></span><span class="line"><span class="cl">            box <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 施加围压
+</span></span><span class="line"><span class="cl">apply stress -10e6 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> range box <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 固结
+</span></span><span class="line"><span class="cl">solve <span class="nb">time</span> <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> 偏心加载
+</span></span><span class="line"><span class="cl">apply velocity <span class="m">0</span> <span class="m">0</span> -0.01 range box <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">5</span> <span class="m">0</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl">solve <span class="nb">time</span> <span class="m">1000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="15-注意事项">15. 注意事项
+</h2><ol>
+<li><strong>命令格式</strong>：PFC命令以分号结尾</li>
+<li><strong>注释</strong>：使用分号表示注释开始</li>
+<li><strong>大小写</strong>：PFC命令不区分大小写</li>
+<li><strong>坐标系统</strong>：默认Z轴向上（3D），2D模型在XY平面</li>
+<li><strong>单位系统</strong>：注意保持单位一致性</li>
+<li><strong>文件路径</strong>：使用单引号包围文件路径</li>
+<li><strong>范围选择</strong>：使用range关键字指定作用范围</li>
+</ol>
+<hr>
+<p><strong>版本</strong>：PFC 5.0
+<strong>最后更新</strong>：2025-10-28</p>
 
 </section>
 
@@ -359,7 +1444,7 @@
 
 
         <span>
-            最后更新于 Oct 27, 2025 08:58 UTC
+            最后更新于 Oct 29, 2025 07:27 UTC
         </span>
     </section></footer>
 
